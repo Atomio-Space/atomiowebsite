@@ -1,0 +1,70 @@
+/* assets/new-animation.css */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body, html {
+    cursor: none;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #e0dad5;
+    overflow: hidden;
+}
+
+svg {
+    display: none;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    background-color: #e0dad5;
+    display: block;
+}
+
+.page-bg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #e0dad5;
+}
+
+.page-bg p {
+    font-family: 'Asul', sans-serif;
+    color: #dbd6d1;
+    opacity: 0.8;
+    font-size: 85vmin;
+    margin: 0;
+    text-align: center;
+    line-height: 100vh;
+}
+
+.noise {
+    background-image: url('https://foo-exp.s3.amazonaws.com/morph_mouse/noise_pattern.png');
+    background-size: 200px 200px;
+    background-repeat: repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: hard-light;
+}
+
+/* ... (continue with the rest of the CSS) ... */
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
