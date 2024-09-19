@@ -1,19 +1,25 @@
-document.addEventListener('mousemove', function(e) {
-    const bigBall = document.querySelector('.cursor__ball--big');
-    const smallBall = document.querySelector('.cursor__ball--small');
+const $bigBall = document.querySelector('.cursor__ball--big');
+const $smallBall = document.querySelector('.cursor__ball--small');
+const $hoverables = document.querySelectorAll('.hoverable');
 
-    bigBall.style.transform = `translate(${e.pageX - 15}px, ${e.pageY - 15}px)`;
-    smallBall.style.transform = `translate(${e.pageX - 5}px, ${e.pageY - 7}px)`;
+// Listeners
+document.body.addEventListener('mousemove', onMouseMove);
+$hoverables.forEach(hoverable => {
+  hoverable.addEventListener('mouseenter', onMouseHover);
+  hoverable.addEventListener('mouseleave', onMouseHoverOut);
 });
 
-const hoverables = document.querySelectorAll('.hoverable');
+// Move the cursor
+function onMouseMove(e) {
+  gsap.to($bigBall, { duration: 0.4, x: e.pageX - 15, y: e.pageY - 15 });
+  gsap.to($smallBall, { duration: 0.1, x: e.pageX - 5, y: e.pageY - 7 });
+}
 
-hoverables.forEach(element => {
-    element.addEventListener('mouseenter', function() {
-        document.querySelector('.cursor__ball--big').style.transform = 'scale(4)';
-    });
+// Hover an element
+function onMouseHover() {
+  gsap.to($bigBall, { duration: 0.3, scale: 4 });
+}
 
-    element.addEventListener('mouseleave', function() {
-        document.querySelector('.cursor__ball--big').style.transform = 'scale(1)';
-    });
-});
+function onMouseHoverOut() {
+  gsap.to($bigBall, { duration: 0.3, scale: 1 });
+}
