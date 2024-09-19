@@ -1,0 +1,38 @@
+body {
+    height: 100vh;
+    cursor: none;
+    margin: 0;
+    font-family: monospace;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+a {
+    color: #478ac9; /* Example link color */
+    border-bottom: 2px solid #478ac9;
+    padding: 10px 0;
+    margin-top: 25px;
+    text-decoration: none; /* Remove underline */
+}
+
+.cursor {
+    pointer-events: none;
+    position: fixed;
+    z-index: 1000;
+}
+
+.cursor__ball {
+    position: fixed;
+    top: 0;
+    left: 0;
+    mix-blend-mode: difference;
+}
+
+.cursor__ball--big {
+    width: 30px;
+    height: 30px;
+}
+
+.cursor__ball--small {
+    width: 10px;
+    height: 10px;
+}
