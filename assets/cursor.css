@@ -1,20 +1,6 @@
+/* cursor-animation.css */
 body {
-  height: 100vh;
-  background: #010101;
   cursor: none;
-  margin: 0;
-  display: flex;
-  font-family: monospace;
-}
-
-h1, p, a {
-  color: #fff;
-}
-
-a {
-  border-bottom: 2px solid #fff;
-  padding: 10px 0;
-  margin-top: 25px;
 }
 
 .cursor {
@@ -33,23 +19,4 @@ a {
   fill: #f7f8fa;
 }
 
-.left, .right {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.right {
-  background: #fff;
-}
-
-.right a {
-  border-bottom: 2px solid #000;
-}
-
-.right h1, .right p, .right a {
-  color: #000;
-}
+/* Add any additional styles for your specific layout here */
