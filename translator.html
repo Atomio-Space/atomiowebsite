@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sema Translator</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.1/svg.min.js"></script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50">
     <!-- Header -->
-    <header class="bg-blue-600 text-white p-4">
+    <header class="bg-gray-900 text-white p-4">
         <div class="container mx-auto">
             <h1 class="text-3xl font-bold">Sema Translator</h1>
             <p class="text-lg">Bridging Language Barriers Across Africa</p>
@@ -24,16 +23,15 @@
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Input Language</label>
-                        <select id="sourceLanguage" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <select id="sourceLanguage" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900">
                             <option value="auto">Auto Detect</option>
                             <option value="afr_Latn">Afrikaans</option>
                             <option value="ace_Latn">Acehnese (Latin)</option>
-                            <!-- Add more languages -->
                         </select>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Enter Text</label>
-                        <textarea id="inputText" rows="6" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Enter text to translate..."></textarea>
+                        <textarea id="inputText" rows="6" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900" placeholder="Enter text to translate..."></textarea>
                     </div>
                 </div>
 
@@ -41,10 +39,9 @@
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Output Language</label>
-                        <select id="targetLanguage" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <select id="targetLanguage" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900">
                             <option value="afr_Latn">Afrikaans</option>
                             <option value="ace_Latn">Acehnese (Latin)</option>
-                            <!-- Add more languages -->
                         </select>
                     </div>
                     <div>
@@ -54,7 +51,7 @@
                 </div>
             </div>
             <div class="mt-4">
-                <button id="translateBtn" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <button id="translateBtn" class="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
                     Translate
                 </button>
             </div>
@@ -63,64 +60,60 @@
         <!-- Interactive Map Section -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
             <h2 class="text-2xl font-bold mb-4">African Language Map</h2>
-            <div id="africaMap" class="w-full h-96 bg-gray-100 rounded-lg"></div>
+            <div id="africaMap" class="w-full h-96 bg-gray-50 rounded-lg"></div>
         </div>
 
         <!-- Additional Services -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <!-- Conference Translation -->
-            <div class="bg-white rounded-lg shadow-lg p-6">
+            <!-- Cards with dark theme -->
+            <div class="bg-gray-900 text-white rounded-lg shadow-lg p-6">
                 <h3 class="text-xl font-bold mb-2">Conference Live Translation</h3>
-                <p class="text-gray-600 mb-4">Real-time translation for conferences and meetings</p>
-                <a href="#" class="text-blue-600 hover:text-blue-800">Learn More →</a>
+                <p class="text-gray-300 mb-4">Real-time translation for conferences and meetings</p>
+                <a href="#" class="text-gray-300 hover:text-white">Learn More →</a>
             </div>
 
-            <!-- SemaPDF -->
-            <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="bg-gray-900 text-white rounded-lg shadow-lg p-6">
                 <h3 class="text-xl font-bold mb-2">SemaPDF</h3>
-                <p class="text-gray-600 mb-4">Chat with PDF documents in your native language</p>
-                <a href="#" class="text-blue-600 hover:text-blue-800">Learn More →</a>
+                <p class="text-gray-300 mb-4">Chat with PDF documents in your native language</p>
+                <a href="#" class="text-gray-300 hover:text-white">Learn More →</a>
             </div>
 
-            <!-- E-commerce Tool -->
-            <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="bg-gray-900 text-white rounded-lg shadow-lg p-6">
                 <h3 class="text-xl font-bold mb-2">E-commerce Localization</h3>
-                <p class="text-gray-600 mb-4">Translate your online store to local languages</p>
-                <a href="#" class="text-blue-600 hover:text-blue-800">Learn More →</a>
+                <p class="text-gray-300 mb-4">Translate your online store to local languages</p>
+                <a href="#" class="text-gray-300 hover:text-white">Learn More →</a>
             </div>
         </div>
 
         <!-- Contact Section -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Request Languages -->
             <div class="bg-white rounded-lg shadow-lg p-6">
                 <h3 class="text-xl font-bold mb-4">Request New Language</h3>
                 <form class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Language Name</label>
-                        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Your Email</label>
-                        <input type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <input type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900">
                     </div>
-                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Submit Request</button>
+                    <button type="submit" class="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800">Submit Request</button>
                 </form>
             </div>
 
-            <!-- Get Quote -->
             <div class="bg-white rounded-lg shadow-lg p-6">
                 <h3 class="text-xl font-bold mb-4">Get a Quote</h3>
                 <form class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Project Description</label>
-                        <textarea rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                        <textarea rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900"></textarea>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Contact Information</label>
-                        <input type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Your email">
+                        <input type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900" placeholder="Your email">
                     </div>
-                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Request Quote</button>
+                    <button type="submit" class="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800">Request Quote</button>
                 </form>
             </div>
         </div>
@@ -178,9 +171,35 @@
         // Event listeners
         document.getElementById('translateBtn').addEventListener('click', translate);
 
-        // Simple Africa map initialization
-        const draw = SVG().addTo('#africaMap').size('100%', '100%');
-        // Add map drawing code here...
+        // Create simplified Africa map
+        const svgString = `
+            <svg viewBox="0 0 800 800" class="w-full h-full">
+                <!-- Simplified Africa outline -->
+                <path d="M400 100 C500 150, 550 200, 600 300 C650 400, 650 500, 600 600 C550 700, 450 750, 400 750 C350 750, 250 700, 200 600 C150 500, 150 400, 200 300 C250 200, 300 150, 400 100" 
+                      fill="#1a1a1a" 
+                      stroke="#333"
+                      stroke-width="2"/>
+                
+                <!-- Add interactive language points -->
+                <circle cx="300" cy="200" r="10" fill="#fff" class="cursor-pointer hover:fill-gray-300">
+                    <title>Swahili Region</title>
+                </circle>
+                <circle cx="400" cy="400" r="10" fill="#fff" class="cursor-pointer hover:fill-gray-300">
+                    <title>Yoruba Region</title>
+                </circle>
+                <circle cx="500" cy="300" r="10" fill="#fff" class="cursor-pointer hover:fill-gray-300">
+                    <title>Amharic Region</title>
+                </circle>
+                <circle cx="350" cy="600" r="10" fill="#fff" class="cursor-pointer hover:fill-gray-300">
+                    <title>Zulu Region</title>
+                </circle>
+                <circle cx="250" cy="400" r="10" fill="#fff" class="cursor-pointer hover:fill-gray-300">
+                    <title>Hausa Region</title>
+                </circle>
+            </svg>
+        `;
+
+        document.getElementById('africaMap').innerHTML = svgString;
     </script>
 </body>
 </html>
