@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sema Translator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.1/svg.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold">Sema Translator</h1>
+            <p class="text-lg">Bridging Language Barriers Across Africa</p>
+        </div>
+    </header>
+
+    <!-- Main Translation Interface -->
+    <main class="container mx-auto p-4">
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Input Section -->
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Input Language</label>
+                        <select id="sourceLanguage" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="auto">Auto Detect</option>
+                            <option value="afr_Latn">Afrikaans</option>
+                            <option value="ace_Latn">Acehnese (Latin)</option>
+                            <!-- Add more languages -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Enter Text</label>
+                        <textarea id="inputText" rows="6" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Enter text to translate..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Output Section -->
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Output Language</label>
+                        <select id="targetLanguage" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="afr_Latn">Afrikaans</option>
+                            <option value="ace_Latn">Acehnese (Latin)</option>
+                            <!-- Add more languages -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Translation</label>
+                        <textarea id="outputText" rows="6" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-50" readonly></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <button id="translateBtn" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Translate
+                </button>
+            </div>
+        </div>
+
+        <!-- Interactive Map Section -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">African Language Map</h2>
+            <div id="africaMap" class="w-full h-96 bg-gray-100 rounded-lg"></div>
+        </div>
+
+        <!-- Additional Services -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- Conference Translation -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-2">Conference Live Translation</h3>
+                <p class="text-gray-600 mb-4">Real-time translation for conferences and meetings</p>
+                <a href="#" class="text-blue-600 hover:text-blue-800">Learn More →</a>
+            </div>
+
+            <!-- SemaPDF -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-2">SemaPDF</h3>
+                <p class="text-gray-600 mb-4">Chat with PDF documents in your native language</p>
+                <a href="#" class="text-blue-600 hover:text-blue-800">Learn More →</a>
+            </div>
+
+            <!-- E-commerce Tool -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-2">E-commerce Localization</h3>
+                <p class="text-gray-600 mb-4">Translate your online store to local languages</p>
+                <a href="#" class="text-blue-600 hover:text-blue-800">Learn More →</a>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Request Languages -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-4">Request New Language</h3>
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Language Name</label>
+                        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Your Email</label>
+                        <input type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Submit Request</button>
+                </form>
+            </div>
+
+            <!-- Get Quote -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-4">Get a Quote</h3>
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Project Description</label>
+                        <textarea rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Contact Information</label>
+                        <input type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Your email">
+                    </div>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Request Quote</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Translation API endpoints
+        const API_DETECT = "https://kamau1-sematranslator.hf.space/translate_detect/";
+        const API_TRANSLATE = "https://kamau1-sematranslator.hf.space/translate_enter/";
+
+        // Translation function
+        async function translate() {
+            const inputText = document.getElementById('inputText').value;
+            const sourceLanguage = document.getElementById('sourceLanguage').value;
+            const targetLanguage = document.getElementById('targetLanguage').value;
+            const outputText = document.getElementById('outputText');
+
+            if (!inputText) return;
+
+            try {
+                let response;
+                if (sourceLanguage === 'auto') {
+                    response = await fetch(API_DETECT, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            userinput: inputText,
+                            target_lang: targetLanguage
+                        })
+                    });
+                } else {
+                    response = await fetch(API_TRANSLATE, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            userinput: inputText,
+                            source_lang: sourceLanguage,
+                            target_lang: targetLanguage
+                        })
+                    });
+                }
+
+                const result = await response.json();
+                outputText.value = result.translated_text;
+            } catch (error) {
+                console.error('Translation error:', error);
+                outputText.value = 'Error occurred during translation';
+            }
+        }
+
+        // Event listeners
+        document.getElementById('translateBtn').addEventListener('click', translate);
+
+        // Simple Africa map initialization
+        const draw = SVG().addTo('#africaMap').size('100%', '100%');
+        // Add map drawing code here...
+    </script>
+</body>
+</html>
