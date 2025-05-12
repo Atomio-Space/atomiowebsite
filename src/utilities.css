@@ -1,0 +1,168 @@
+/* Custom utilities for Tailwind CSS v4 */
+
+/* Font families */
+@utility font-montserrat {
+  font-family: var(--font-montserrat);
+}
+
+@utility font-inter {
+  font-family: var(--font-inter);
+}
+
+/* Background colors */
+@utility bg-white {
+  background-color: var(--color-white);
+}
+
+@utility bg-black {
+  background-color: var(--color-black);
+}
+
+@utility bg-primary {
+  background-color: var(--color-primary);
+}
+
+@utility bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+@utility bg-accent {
+  background-color: var(--color-accent);
+}
+
+@utility bg-neutral {
+  background-color: var(--color-neutral);
+}
+
+/* Text colors */
+@utility text-white {
+  color: var(--color-white);
+}
+
+@utility text-black {
+  color: var(--color-black);
+}
+
+@utility text-dark {
+  color: var(--color-dark);
+}
+
+@utility text-primary {
+  color: var(--color-primary);
+}
+
+@utility text-accent {
+  color: var(--color-accent);
+}
+
+@utility text-neutral {
+  color: var(--color-neutral);
+}
+
+/* Border colors */
+@utility border-primary {
+  border-color: var(--color-primary);
+}
+
+@utility border-accent {
+  border-color: var(--color-accent);
+}
+
+@utility border-neutral {
+  border-color: var(--color-neutral);
+}
+
+/* Gradient backgrounds */
+@utility bg-gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+}
+
+/* Shadow utilities */
+@utility shadow-soft {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+@utility shadow-card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Border colors */
+@utility border-primary {
+  border-color: var(--color-primary);
+}
+
+/* Hover states */
+@utility hover\:bg-primary:hover {
+  background-color: var(--color-primary);
+}
+
+@utility hover\:text-white:hover {
+  color: var(--color-white);
+}
+
+@utility hover\:bg-opacity-90:hover {
+  background-color: color-mix(in srgb, currentColor 90%, transparent);
+}
+
+@utility hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* Shadow utilities */
+@utility shadow-md {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+@utility shadow-lg {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* Rounded utilities */
+@utility rounded-lg {
+  border-radius: 0.5rem;
+}
+
+@utility rounded-xl {
+  border-radius: 0.75rem;
+}
+
+/* Transition utilities */
+@utility transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+@utility transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+@utility duration-300 {
+  transition-duration: 300ms;
+}
+
+/* Opacity utilities */
+@utility opacity-0 {
+  opacity: 0;
+}
+
+@utility opacity-100 {
+  opacity: 1;
+}
+
+/* Transform utilities */
+@utility transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@utility translate-y-0 {
+  --tw-translate-y: 0px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@utility translate-y-20px {
+  --tw-translate-y: 20px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}

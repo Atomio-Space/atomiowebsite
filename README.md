@@ -1,18 +1,22 @@
-# Atomio Website
+# Atomio Technologies Website
 
 ## Project Overview
-Atomio is a dynamic startup focused on innovation and growth. This repository contains the codebase for our official website, designed to showcase our products, services, and company vision.
+Atomio Technologies is a dynamic startup focused on innovation and growth. This repository contains the codebase for our official website, designed to showcase our products, services, and company vision.
+
+This project follows a frontend-first development approach, with the backend implementation planned for a later phase. The repository is organized into two main directories:
+
+- `frontend/`: Contains the React application built with Vite and styled with Tailwind CSS
+- `backend/`: Will contain the Supabase backend code (to be implemented in a future phase)
 
 ## Design Specifications
 
 ### Visual Design
 
 #### Color Palette
-- **Primary Color**: Deep Indigo (#3A0CA3) - Represents innovation and trustworthiness
-- **Secondary Color**: Vibrant Teal (#4CC9F0) - Adds energy and creativity
-- **Accent Color**: Electric Purple (#7209B7) - Used for call-to-action elements
-- **Background Colors**: Gradient from Off-White (#F8F9FA) to Light Gray (#E9ECEF)
-- **Text Colors**: Dark Charcoal (#212529) for body text, Deep Indigo for headings
+- **Primary Color**: Red (#ea0e0e) - Used for the logo and primary actions
+- **Secondary Color**: Light Blue (#f0f4f8) - Used for backgrounds and subtle accents
+- **Background Colors**: Gradient from White (#ffffff) to Light Blue (#f0f4f8)
+- **Text Colors**: Dark Charcoal (#212529) for body text
 
 #### Typography
 - **Headings**: Montserrat Bold (sizes: H1: 48px, H2: 36px, H3: 24px)
@@ -597,13 +601,14 @@ graph TD
 ## Tech Stack
 
 ### Frontend
-- **Framework**: React with Next.js for server-side rendering and optimized performance
+- **Framework**: React with Vite for fast development and optimized performance
+- **Language**: TypeScript for type safety
 - **Styling**: Tailwind CSS for utility-first styling approach
 - **State Management**: React Context API for global state
-- **Animations**: Framer Motion for advanced animations
-- **Form Handling**: React Hook Form with Yup validation
+- **Animations**: CSS animations and transitions
+- **Form Handling**: React Hook Form with validation
 
-### Backend
+### Backend (Planned)
 - **Database**: PostgreSQL via Supabase - chosen specifically for its robustness and scalability to support our startup's frequent iterations and growth
 - **Authentication**: Supabase Auth with social login options
 - **API**: Supabase REST and real-time subscriptions
@@ -612,14 +617,12 @@ graph TD
 ### Development Tools
 - **Build Tool**: Vite for fast development experience
 - **Version Control**: Git with GitHub
-- **CI/CD**: GitHub Actions for automated testing and deployment
 - **Code Quality**: ESLint, Prettier, and TypeScript for type safety
-- **Testing**: Jest and React Testing Library
+- **Testing**: Vitest and React Testing Library
 
-### Deployment
-- **Hosting**: Vercel for the frontend
+### Deployment (Planned)
+- **Hosting**: Netlify, Vercel, or AWS Amplify for the frontend
 - **Backend**: Supabase cloud infrastructure
-- **CDN**: Vercel Edge Network for global content delivery
 
 ## Getting Started
 
@@ -635,21 +638,18 @@ graph TD
    cd atomiowebsite
    ```
 
-2. Install dependencies
+2. Install frontend dependencies
    ```
+   cd frontend
    npm install
    ```
 
-3. Set up environment variables
-   ```
-   cp .env.example .env.local
-   ```
-   Then edit `.env.local` with your Supabase credentials
-
-4. Start the development server
+3. Start the development server
    ```
    npm run dev
    ```
+
+4. Open your browser and navigate to the URL shown in the terminal (typically http://localhost:5173)
 
 ## Development Workflow
 1. Create a feature branch from `main`
