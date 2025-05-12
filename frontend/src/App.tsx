@@ -7,8 +7,16 @@ import Projects from './components/sections/Projects'
 import About from './components/sections/About'
 import Approach from './components/sections/Approach'
 import Blog from './components/sections/Blog'
+import Maintenance from './components/pages/Maintenance'
 
 function App() {
+  // Set to true to show maintenance page, false to show regular site
+  const isUnderMaintenance = true;
+
+  if (isUnderMaintenance) {
+    return <Maintenance />;
+  }
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
