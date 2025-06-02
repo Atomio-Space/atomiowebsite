@@ -37,7 +37,7 @@ const ProductsSection = () => {
   }, []);
 
   return (
-    <section className="section-padding bg-[var(--bg-tertiary)]">
+    <section className="section-padding bg-[var(--bg-primary)]">
       <div className="container-md">
         <div className="text-center mb-16">
           <motion.h2
@@ -88,13 +88,13 @@ const ProductsSection = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="flex-1 lg:self-center">
                   <div className="space-y-6">
                     <h3 className="heading-md text-[var(--text-primary)]">{product.name}</h3>
                     <p className="body-lg font-medium text-[var(--brand-secondary)]">{product.tagline}</p>
                     <p className="body-md text-[var(--text-secondary)]">{product.short_description}</p>
-                    
+
                     <div className="space-y-4 mt-6">
                       {product.key_features.slice(0, 3).map((feature, idx) => (
                         <div key={idx} className="flex">
@@ -110,7 +110,7 @@ const ProductsSection = () => {
                         </div>
                       ))}
                     </div>
-                    
+
                     <div className="mt-8">
                       <Link to={`/products/${product.slug}`} className="btn-primary inline-flex items-center">
                         Explore {product.name}

@@ -1,3 +1,0 @@
-This is a placeholder for a blog post image.
-In a real implementation, you would place actual image files here.
-For the actual website, please replace this with real images.

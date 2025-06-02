@@ -56,7 +56,7 @@ src/
 
 **Light Theme**
 - `#FDFCF9` - Primary background
-- `#F3F3EF` - Secondary background  
+- `#F3F3EF` - Secondary background
 - `#EAECE9` - Tertiary background
 
 **Dark Theme**
@@ -170,8 +170,8 @@ VITE_SITE_URL=your_domain
 ## 📞 Support
 
 For development questions or technical support:
-- **Development Team**: [team@atomiotechnologies.com]
-- **Project Lead**: [lead@atomiotechnologies.com]
+- **Development Team**: [team@atomio.tech]
+- **Project Lead**: [lead@atomio.tech]
 - **Repository Issues**: Use GitHub issues for bug reports
 
 ## 📄 License

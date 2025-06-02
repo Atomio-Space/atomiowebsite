@@ -23,7 +23,7 @@ const tips = [
 
 export function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  
+
   useEffect(() => {
     // Load fonts
     const orbitronFont = document.createElement('link');
@@ -69,7 +69,7 @@ export function App() {
           </AnimatePresence>
         </main>
         <ScrollToTop />
-        <Footer />
+        <Footer theme={theme} toggleTheme={toggleTheme} />
       </div>
     </Router>
   );

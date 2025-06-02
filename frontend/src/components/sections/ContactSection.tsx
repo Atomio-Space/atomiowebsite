@@ -10,10 +10,10 @@ const ContactSection = () => {
     service_interest: '',
     message: ''
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -21,20 +21,20 @@ const ContactSection = () => {
       [name]: value
     });
   };
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulating API call
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     // In a real implementation, we would send data to Supabase
     // const { data, error } = await supabase.from('leads').insert([formData]);
-    
+
     setIsSubmitting(false);
     setSubmitted(true);
-    
+
     // Reset form after submission
     setFormData({
       full_name: '',
@@ -43,17 +43,17 @@ const ContactSection = () => {
       service_interest: '',
       message: ''
     });
-    
+
     // Reset success message after 5 seconds
     setTimeout(() => {
       setSubmitted(false);
     }, 5000);
   };
-  
+
   return (
     <section className="section-padding bg-[var(--bg-primary)]" id="contact">
       <div className="container-md">
-        <div className="bg-[var(--bg-secondary)] rounded-3xl p-8 md:p-12 shadow-md">
+        <div className="bg-[var(--bg-secondary)] rounded-[10px] p-8 md:p-12 shadow-md">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div>
               <motion.div
@@ -76,7 +76,7 @@ const ContactSection = () => {
                       <p className="body-md text-[var(--text-secondary)]">Share your goals, challenges, and timeline.</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start">
                     <div className="h-10 w-10 rounded-full bg-[var(--brand-primary)] bg-opacity-10 flex items-center justify-center mr-4">
                       <div className="h-5 w-5 rounded-full bg-[var(--brand-primary)] text-white flex items-center justify-center text-xs">2</div>
@@ -86,7 +86,7 @@ const ContactSection = () => {
                       <p className="body-md text-[var(--text-secondary)]">Our team will review your needs and get back to you quickly.</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start">
                     <div className="h-10 w-10 rounded-full bg-[var(--brand-primary)] bg-opacity-10 flex items-center justify-center mr-4">
                       <div className="h-5 w-5 rounded-full bg-[var(--brand-primary)] text-white flex items-center justify-center text-xs">3</div>
@@ -99,7 +99,7 @@ const ContactSection = () => {
                 </div>
               </motion.div>
             </div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -124,11 +124,11 @@ const ContactSection = () => {
                         value={formData.full_name}
                         onChange={handleChange}
                         required
-                        className="w-full p-3 bg-[var(--bg-primary)] border border-[var(--text-muted)] border-opacity-30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand-secondary)] focus:border-transparent"
+                        className="w-full p-3 bg-[var(--bg-primary)] border border-[var(--text-muted)] border-opacity-30 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[var(--brand-secondary)] focus:border-transparent"
                         placeholder="John Doe"
                       />
                     </div>
-                    
+
                     <div>
                       <label htmlFor="email" className="block body-sm font-medium text-[var(--text-primary)] mb-2">
                         Email Address *
@@ -140,11 +140,11 @@ const ContactSection = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full p-3 bg-[var(--bg-primary)] border border-[var(--text-muted)] border-opacity-30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand-secondary)] focus:border-transparent"
+                        className="w-full p-3 bg-[var(--bg-primary)] border border-[var(--text-muted)] border-opacity-30 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[var(--brand-secondary)] focus:border-transparent"
                         placeholder="john@company.com"
                       />
                     </div>
-                    
+
                     <div>
                       <label htmlFor="company" className="block body-sm font-medium text-[var(--text-primary)] mb-2">
                         Company
@@ -155,11 +155,11 @@ const ContactSection = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full p-3 bg-[var(--bg-primary)] border border-[var(--text-muted)] border-opacity-30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand-secondary)] focus:border-transparent"
+                        className="w-full p-3 bg-[var(--bg-primary)] border border-[var(--text-muted)] border-opacity-30 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[var(--brand-secondary)] focus:border-transparent"
                         placeholder="Your Company"
                       />
                     </div>
-                    
+
                     <div>
                       <label htmlFor="service_interest" className="block body-sm font-medium text-[var(--text-primary)] mb-2">
                         I'm interested in
@@ -169,7 +169,7 @@ const ContactSection = () => {
                         name="service_interest"
                         value={formData.service_interest}
                         onChange={handleChange}
-                        className="w-full p-3 bg-[var(--bg-primary)] border border-[var(--text-muted)] border-opacity-30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand-secondary)] focus:border-transparent"
+                        className="w-full p-3 bg-[var(--bg-primary)] border border-[var(--text-muted)] border-opacity-30 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[var(--brand-secondary)] focus:border-transparent"
                       >
                         <option value="">Select a service</option>
                         <option value="custom-software">Custom Software Development</option>
@@ -179,7 +179,7 @@ const ContactSection = () => {
                         <option value="digital-transformation">Digital Transformation</option>
                       </select>
                     </div>
-                    
+
                     <div>
                       <label htmlFor="message" className="block body-sm font-medium text-[var(--text-primary)] mb-2">
                         Message *
@@ -191,11 +191,11 @@ const ContactSection = () => {
                         onChange={handleChange}
                         required
                         rows={4}
-                        className="w-full p-3 bg-[var(--bg-primary)] border border-[var(--text-muted)] border-opacity-30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand-secondary)] focus:border-transparent"
+                        className="w-full p-3 bg-[var(--bg-primary)] border border-[var(--text-muted)] border-opacity-30 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[var(--brand-secondary)] focus:border-transparent"
                         placeholder="Tell us about your project or inquiry"
                       />
                     </div>
-                    
+
                     <button
                       type="submit"
                       disabled={isSubmitting}
@@ -210,7 +210,7 @@ const ContactSection = () => {
                     </button>
                   </>
                 )}
-                
+
                 <p className="body-xs text-[var(--text-muted)] text-center mt-4">
                   By submitting this form, you agree to our <a href="/privacy" className="underline">Privacy Policy</a>.
                 </p>

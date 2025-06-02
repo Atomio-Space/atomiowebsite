@@ -426,7 +426,7 @@ serve(async (req) => {
 
   try {
     const formData: ContactFormData = await req.json();
-    
+
     // Validate required fields
     if (!formData.full_name || !formData.email || !formData.message) {
       return new Response('Missing required fields', { status: 400 });
@@ -457,9 +457,9 @@ serve(async (req) => {
     // Send notification email (integrate with your email service)
     await sendNotificationEmail(formData);
 
-    return new Response(JSON.stringify({ 
-      success: true, 
-      message: 'Thank you for your inquiry. We\'ll get back to you within 24 hours.' 
+    return new Response(JSON.stringify({
+      success: true,
+      message: 'Thank you for your inquiry. We\'ll get back to you within 24 hours.'
     }), {
       headers: { 'Content-Type': 'application/json' },
       status: 200
@@ -492,13 +492,13 @@ serve(async (req) => {
     // Handle file upload (resume)
     const resumeFile = formData.get('resume') as File;
     let resume_url = null;
-    
+
     if (resumeFile) {
       const fileName = `resumes/${Date.now()}-${resumeFile.name}`;
       const { data: uploadData, error: uploadError } = await supabase.storage
         .from('applications')
         .upload(fileName, resumeFile);
-      
+
       if (!uploadError) {
         resume_url = uploadData.path;
       }
@@ -514,9 +514,9 @@ serve(async (req) => {
       return new Response('Failed to submit application', { status: 500 });
     }
 
-    return new Response(JSON.stringify({ 
-      success: true, 
-      message: 'Application submitted successfully!' 
+    return new Response(JSON.stringify({
+      success: true,
+      message: 'Application submitted successfully!'
     }), {
       headers: { 'Content-Type': 'application/json' },
       status: 200
@@ -539,7 +539,7 @@ interface AdminDashboard {
   products: CRUD_Operations;
   blog_posts: CRUD_Operations;
   team_members: CRUD_Operations;
-  
+
   // Lead Management
   leads: {
     view: LeadListView;
@@ -547,7 +547,7 @@ interface AdminDashboard {
     export: ExportFunction;
     assign: AssignmentFunction;
   };
-  
+
   // Analytics
   analytics: {
     leads_by_source: Chart;
@@ -577,7 +577,7 @@ const { data, error } = await supabase
 // Real-time lead notifications
 const leadSubscription = supabase
   .channel('leads')
-  .on('postgres_changes', 
+  .on('postgres_changes',
     { event: 'INSERT', schema: 'public', table: 'leads' },
     (payload) => {
       // Notify admin team of new lead
@@ -622,32 +622,32 @@ export async function clientSatisfactionSurvey() {
 ```sql
 -- Lead conversion tracking
 CREATE VIEW lead_conversion_metrics AS
-SELECT 
+SELECT
   DATE_TRUNC('month', created_at) as month,
   lead_source,
   COUNT(*) as total_leads,
   COUNT(CASE WHEN status = 'converted' THEN 1 END) as converted_leads,
   ROUND(
-    COUNT(CASE WHEN status = 'converted' THEN 1 END)::decimal / 
+    COUNT(CASE WHEN status = 'converted' THEN 1 END)::decimal /
     COUNT(*)::decimal * 100, 2
   ) as conversion_rate
-FROM leads 
+FROM leads
 GROUP BY DATE_TRUNC('month', created_at), lead_source
 ORDER BY month DESC, conversion_rate DESC;
 
 -- Service popularity tracking
 CREATE VIEW service_interest_metrics AS
-SELECT 
+SELECT
   service_interest,
   COUNT(*) as inquiry_count,
-  AVG(CASE 
+  AVG(CASE
     WHEN project_budget = '10k-25k' THEN 17500
     WHEN project_budget = '25k-50k' THEN 37500
     WHEN project_budget = '50k-100k' THEN 75000
     WHEN project_budget = '100k+' THEN 150000
     ELSE 10000
   END) as avg_project_value
-FROM leads 
+FROM leads
 WHERE service_interest IS NOT NULL
 GROUP BY service_interest
 ORDER BY inquiry_count DESC;
@@ -684,7 +684,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 # Email Service (Optional - for notifications)
 SMTP_HOST=smtp.your-email-service.com
 SMTP_PORT=587
-SMTP_USER=your-email@atomiotechnologies.com
+SMTP_USER=your-email@atomio.tech
 SMTP_PASS=your-app-password
 
 # Slack Integration (Optional - for lead notifications)
@@ -704,9 +704,9 @@ CREATE INDEX idx_blog_search ON blog_posts USING gin(search_vector);
 CREATE OR REPLACE FUNCTION update_blog_search_vector()
 RETURNS TRIGGER AS $
 BEGIN
-  NEW.search_vector := to_tsvector('english', 
-    COALESCE(NEW.title, '') || ' ' || 
-    COALESCE(NEW.excerpt, '') || ' ' || 
+  NEW.search_vector := to_tsvector('english',
+    COALESCE(NEW.title, '') || ' ' ||
+    COALESCE(NEW.excerpt, '') || ' ' ||
     COALESCE(array_to_string(NEW.tags, ' '), '')
   );
   RETURN NEW;
@@ -724,11 +724,11 @@ CREATE TRIGGER update_blog_search_trigger
 export async function createDatabaseBackup() {
   const timestamp = new Date().toISOString().split('T')[0];
   const backupName = `atomio-backup-${timestamp}`;
-  
+
   // Supabase automatically handles database backups
   // But we can export critical data for additional safety
   const criticalTables = ['services', 'projects', 'products', 'leads'];
-  
+
   for (const table of criticalTables) {
     const { data } = await supabase.from(table).select('*');
     await uploadBackupFile(`${backupName}-${table}.json`, JSON.stringify(data));
@@ -775,7 +775,7 @@ export const seedData = {
     },
     {
       name: "AI & LLM Solutions",
-      slug: "ai-llm-solutions", 
+      slug: "ai-llm-solutions",
       short_description: "Intelligent automation and language processing for modern businesses.",
       icon_name: "brain",
       features: ["Custom LLM integration", "Intelligent automation", "Data analysis"],
@@ -785,7 +785,7 @@ export const seedData = {
     },
     // ... more services
   ],
-  
+
   products: [
     {
       name: "Sema AI",

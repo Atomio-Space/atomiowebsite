@@ -73,7 +73,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section className="section-padding bg-[var(--bg-secondary)]">
+    <section className="section-padding bg-[var(--bg-primary)]">
       <div className="container-md">
         <div className="text-center mb-16">
           <motion.h2
@@ -112,12 +112,12 @@ const ServicesSection = () => {
               <motion.div
                 key={service.id}
                 variants={itemVariants}
-                className="bg-[var(--bg-primary)] p-8 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300"
+                className="bg-[var(--bg-secondary)] p-8 rounded-[10px] shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <div className="mb-6">{getIconComponent(service.icon_name)}</div>
                 <h3 className="heading-sm mb-4 text-[var(--text-primary)]">{service.name}</h3>
                 <p className="body-md text-[var(--text-secondary)] mb-6">{service.short_description}</p>
-                
+
                 <ul className="space-y-2 mb-8">
                   {service.features.slice(0, 3).map((feature, index) => (
                     <li key={index} className="flex items-center text-[var(--text-secondary)]">
@@ -126,7 +126,7 @@ const ServicesSection = () => {
                     </li>
                   ))}
                 </ul>
-                
+
                 <Link to={`/services/${service.slug}`} className="btn-text">
                   Learn more
                 </Link>
@@ -134,7 +134,7 @@ const ServicesSection = () => {
             ))}
           </motion.div>
         )}
-        
+
         <div className="flex justify-center mt-12">
           <Link to="/services" className="btn-secondary">
             View All Services
