@@ -1,144 +1,135 @@
-@import "./theme.css";
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-/* Dynamic text animation for hero section */
-.text-accent {
-  transition: color 0.3s ease;
+:root {
+  /* Light Theme */
+  --bg-primary: #FDFCF9;
+  --bg-secondary: #F3F3EF;
+  --bg-tertiary: #EAECE9;
+  
+  /* Brand Colors */
+  --brand-primary: #194750;
+  --brand-secondary: #2BB9CC;
+  --brand-tertiary: #1F757E;
+  
+  /* Text Colors */
+  --text-primary: #1A1A1A;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  
+  /* Semantic Colors */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
 }
 
-/* Smooth page transitions */
-.page-transition-enter {
-  opacity: 0;
-}
-.page-transition-enter-active {
-  opacity: 1;
-  transition: opacity 300ms;
-}
-.page-transition-exit {
-  opacity: 1;
-}
-.page-transition-exit-active {
-  opacity: 0;
-  transition: opacity 300ms;
+:root[data-theme="dark"] {
+  /* Dark Theme */
+  --bg-primary: #202323;
+  --bg-secondary: #181B1A;
+  --bg-tertiary: #1F2121;
+  
+  /* Text Colors in Dark Mode */
+  --text-primary: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --text-muted: #999999;
 }
 
 @layer base {
-  html {
-    font-family: var(--font-inter);
-    scroll-behavior: smooth;
-  }
-
   body {
-    background-color: white;
-    color: var(--color-dark);
-    margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
+    @apply bg-[var(--bg-primary)] text-[var(--text-primary)];
   }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-inter);
-    font-weight: 500;
+  
+  /* Typography Classes */
+  .heading-xl {
+    @apply text-5xl font-bold leading-tight;
   }
-
-  h1 {
-    font-size: 2.25rem;
+  
+  .heading-lg {
+    @apply text-4xl font-bold leading-tight;
   }
-
-  @media (min-width: 768px) {
-    h1 {
-      font-size: 3rem;
-    }
+  
+  .heading-md {
+    @apply text-3xl font-semibold leading-tight;
   }
-
-  h2 {
-    font-size: 1.875rem;
+  
+  .heading-sm {
+    @apply text-2xl font-semibold leading-snug;
   }
-
-  @media (min-width: 768px) {
-    h2 {
-      font-size: 2.25rem;
-    }
+  
+  .heading-xs {
+    @apply text-xl font-semibold leading-snug;
   }
-
-  h3 {
-    font-size: 1.5rem;
+  
+  .body-xl {
+    @apply text-xl leading-relaxed;
   }
-
-  @media (min-width: 768px) {
-    h3 {
-      font-size: 1.875rem;
-    }
+  
+  .body-lg {
+    @apply text-lg leading-relaxed;
+  }
+  
+  .body-md {
+    @apply text-base leading-relaxed;
+  }
+  
+  .body-sm {
+    @apply text-sm leading-normal;
+  }
+  
+  .body-xs {
+    @apply text-xs leading-normal;
+  }
+  
+  .logo {
+    font-family: 'Orbitron', monospace;
+    @apply font-bold;
   }
 }
 
 @layer components {
-  .btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-family: var(--font-inter);
-    font-weight: 500;
-    font-size: 1.125rem;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
+  .container-xs {
+    @apply max-w-4xl mx-auto px-4;
   }
-
+  
+  .container-sm {
+    @apply max-w-5xl mx-auto px-4;
+  }
+  
+  .container-md {
+    @apply max-w-6xl mx-auto px-4;
+  }
+  
+  .container-lg {
+    @apply max-w-7xl mx-auto px-4;
+  }
+  
+  .section-padding {
+    @apply py-24;
+  }
+  
+  .section-compact {
+    @apply py-16;
+  }
+  
+  .section-spacious {
+    @apply py-32;
+  }
+  
   .btn-primary {
-    background-color: var(--color-primary);
-    color: white;
+    @apply bg-[var(--brand-primary)] text-white px-8 py-4 rounded-xl font-semibold transition-all duration-200 
+           hover:bg-[var(--brand-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-secondary)] focus:ring-opacity-50;
   }
-
-  .btn-primary:hover {
-    opacity: 0.9;
+  
+  .btn-secondary {
+    @apply bg-transparent text-[var(--brand-primary)] border-2 border-[var(--brand-primary)] px-8 py-4 rounded-xl 
+           font-semibold transition-all duration-200 hover:bg-[var(--brand-primary)] hover:text-white 
+           focus:outline-none focus:ring-2 focus:ring-[var(--brand-secondary)] focus:ring-opacity-50;
   }
-
-  .btn-outline {
-    border: 2px solid var(--color-primary);
-    color: var(--color-primary);
-  }
-
-  .btn-outline:hover {
-    background-color: var(--color-primary);
-    color: white;
-  }
-
-  .card {
-    background-color: white;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-  }
-
-  .card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  }
-
-  .container {
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    max-width: 80rem;
-  }
-
-  @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
+  
+  .btn-text {
+    @apply bg-transparent text-[var(--brand-secondary)] font-semibold underline underline-offset-4 
+           transition-all duration-200 hover:text-[var(--brand-primary)];
   }
 }
