@@ -58,12 +58,12 @@
 
 # Environment-specific settings
 [context.production]
-  command = "npm run build"
+  command = "rm -rf node_modules package-lock.json && npm install && npm run build"
 
 [context.deploy-preview]
-  command = "npm run build"
+  command = "rm -rf node_modules package-lock.json && npm install && npm run build"
 
 [context.branch-deploy]
-  command = "npm run build"
+  command = "rm -rf node_modules package-lock.json && npm install && npm run build"
 
 
