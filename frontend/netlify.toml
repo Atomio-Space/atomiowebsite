@@ -1,6 +1,6 @@
 [build]
-  # Build command
-  command = "npm run build"
+  # Build command with clean install to fix Rollup dependency issues
+  command = "rm -rf node_modules package-lock.json && npm install --legacy-peer-deps && npm run build"
 
   # Directory to publish (relative to the repository root)
   publish = "dist"
@@ -14,9 +14,16 @@
 [build.environment]
   # Node.js version
   NODE_VERSION = "18"
-  
+
   # NPM version (optional)
   NPM_VERSION = "9"
+
+  # Ensure clean install and fix dependency issues
+  NPM_CONFIG_FUND = "false"
+  NPM_CONFIG_AUDIT = "false"
+
+  # Fix for Rollup native dependencies
+  ROLLUP_FORCE_NATIVE = "false"
 
 # Redirect rules for Single Page Application (SPA)
 # This ensures that all routes are handled by React Router
