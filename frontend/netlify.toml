@@ -1,6 +1,6 @@
 [build]
-  # Build command
-  command = "npm ci && npm run build"
+  # Build command with clean install to ensure Rollup dependency is properly installed
+  command = "rm -rf node_modules package-lock.json && npm install && npm run build"
 
   # Directory to publish (relative to the repository root)
   publish = "dist"
