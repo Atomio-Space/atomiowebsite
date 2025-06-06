@@ -1,12 +1,15 @@
 [build]
   # Build command
   command = "npm run build"
-  
+
   # Directory to publish (relative to the repository root)
   publish = "dist"
-  
+
   # Base directory for the build (this is important since we're in the frontend folder)
   base = "frontend"
+
+  # Functions directory (if you plan to add serverless functions later)
+  functions = "netlify/functions"
 
 [build.environment]
   # Node.js version
@@ -63,6 +66,4 @@
 [context.branch-deploy]
   command = "npm run build"
 
-# Functions directory (if you plan to add serverless functions later)
-[build]
-  functions = "netlify/functions"
+
