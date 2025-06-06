@@ -1,28 +1,20 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
+import UnderMaintenancePage from './pages/UnderMaintenancePage';
+import NotFoundPage from './pages/NotFoundPage';
 import ScrollToTop from './components/ui/ScrollToTop';
 import './index.css';
 
-const tips = [
-  'Start by designing your UI before diving into complex backend features.',
-  "Use the '+' button to upload and incorporate custom images into your app.",
-  'Your app preview will automatically refresh when new changes are ready.',
-  'Connect with fellow developers in our Discord to share and learn together.',
-  'Need help? Ask questions in the AI chat panel located on the right side.',
-  'Show screenshots to the AI to get help with visual issues or inspiration.',
-  "Share your creation with others by clicking 'Publish' to deploy your app.",
-  'Subscribe to choose custom subdomains and remove watermarks from apps.',
-  'Add a knowledge.md file to teach the AI about specific technologies.',
-  "Track your progress and review code changes using the 'Review' button.",
-  "Advanced users can edit code directly in the 'Code' tab - use with care!",
-];
+
 
 export function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  // Check if maintenance mode is enabled
+  const isMaintenanceMode = import.meta.env.VITE_MAINTENANCE_MODE === 'true';
 
   useEffect(() => {
     // Load fonts
@@ -56,21 +48,32 @@ export function App() {
     document.documentElement.setAttribute('data-theme', newTheme);
   };
 
+  // If maintenance mode is enabled, show only the maintenance page
+  if (isMaintenanceMode) {
+    return <UnderMaintenancePage />;
+  }
+
   return (
     <Router>
-      <div className="flex flex-col min-h-screen" style={{ fontFamily: 'Urbanist, sans-serif' }}>
-        <Header theme={theme} toggleTheme={toggleTheme} />
-        <main className="flex-grow">
-          <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              {/* Additional routes will be added in future iterations */}
-            </Routes>
-          </AnimatePresence>
-        </main>
-        <ScrollToTop />
-        <Footer theme={theme} toggleTheme={toggleTheme} />
-      </div>
+      <Routes>
+        {/* Maintenance page - no layout */}
+        <Route path="/maintenance" element={<UnderMaintenancePage />} />
+
+        {/* Home page - with layout */}
+        <Route path="/" element={
+          <div className="flex flex-col min-h-screen" style={{ fontFamily: 'Urbanist, sans-serif' }}>
+            <Header theme={theme} toggleTheme={toggleTheme} />
+            <main className="flex-grow">
+              <HomePage />
+            </main>
+            <ScrollToTop />
+            <Footer theme={theme} toggleTheme={toggleTheme} />
+          </div>
+        } />
+
+        {/* 404 page - no layout (catch all) */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </Router>
   );
 }

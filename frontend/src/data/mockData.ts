@@ -139,7 +139,7 @@ export const projects = [
     project_type: "client",
     category: "data_engineering",
     short_description: "A scalable data platform that processes millions of transactions daily for real-time analytics and reporting.",
-    image_url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image_url: "https://images.unsplash.com/photo-1546146830-2cca9512c68e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     technologies: ["Apache Spark", "Kubernetes", "Snowflake", "Airflow", "Tableau"],
     features: ["Real-time data processing", "Automated ETL pipelines", "Executive dashboards", "Regulatory reporting"],
     is_featured: true,

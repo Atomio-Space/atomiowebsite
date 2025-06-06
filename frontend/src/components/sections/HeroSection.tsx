@@ -39,7 +39,7 @@ const HeroSection = () => {
           </motion.h1>
 
           <motion.p variants={itemVariants} className="body-xl max-w-2xl mx-auto text-[var(--text-secondary)]">
-            We build the technology that drives your business forward.
+            We build and support the technology that drives your business forward.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mt-8">

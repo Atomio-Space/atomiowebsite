@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 interface HeaderProps {
-  theme: 'light' | 'dark';
-  toggleTheme: () => void;
+  theme?: 'light' | 'dark';
+  toggleTheme?: () => void;
 }
 
-const Header = ({ theme, toggleTheme }: HeaderProps) => {
+const Header = ({}: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -38,7 +38,7 @@ const Header = ({ theme, toggleTheme }: HeaderProps) => {
           : 'header-transparent py-3'
       }`}
     >
-      <div className="container-lg flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-12 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <h1 className="logo text-[var(--brand-primary)] text-2xl">atomio</h1>
