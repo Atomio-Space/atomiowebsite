@@ -118,10 +118,10 @@ const UnderMaintenancePage = () => {
             <p className="body-sm text-[var(--text-muted)]">
               For urgent matters, please contact us at{' '}
               <a
-                href="mailto:hello@atomio.tech"
+                href="mailto:info@atomio.tech"
                 className="text-[var(--brand-secondary)] hover:text-[var(--brand-primary)] transition-colors"
               >
-                hello@atomio.tech
+                info@atomio.tech
               </a>
             </p>
           </motion.div>
