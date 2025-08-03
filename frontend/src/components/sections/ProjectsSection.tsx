@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import { getProjects } from '../../data/mockData';
 
 interface Project {
@@ -81,13 +82,6 @@ const ProjectsSection = () => {
         duration: 0.3,
         ease: "easeOut"
       }
-    },
-    hover: {
-      y: -8,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut"
-      }
     }
   };
 
@@ -104,7 +98,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section className="section-padding bg-[var(--bg-primary)]">
+    <section id="work" className="section-padding bg-[var(--bg-primary)]">
       <div className="mx-5">
         {/* Floating Card Container */}
         <motion.div
@@ -151,84 +145,70 @@ const ProjectsSection = () => {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8"
+                className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-8"
               >
                 {filteredProjects.map((project) => (
                   <motion.div
                     key={project.id}
                     variants={cardVariants}
-                    whileHover="hover"
-                    className="project-card rounded-[10px] overflow-hidden hover:shadow-[0_12px_30px_rgba(25,71,80,0.15)] transition-all duration-300"
+                    className="group"
                   >
-                    {/* Project Image */}
-                    <div className="relative h-48 overflow-hidden">
-                      <img
-                        src={project.image_url}
-                        alt={project.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute top-4 right-4">
-                        <span className="px-3 py-1 text-xs font-medium bg-[var(--brand-secondary)] text-white rounded-full">
-                          {project.category.replace('_', ' ').toUpperCase()}
-                        </span>
-                      </div>
-                    </div>
+                    {/* Project Image with Button */}
+                    <Link to={`/project/${project.slug}`}>
+                      <div className="relative mb-6 overflow-hidden rounded-[10px] cursor-pointer">
+                        <img
+                          src={project.image_url}
+                          alt={project.title}
+                          className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
 
-                    {/* Project Content */}
-                    <div className="p-6">
-                      {/* Client and Title */}
-                      <div className="flex items-start justify-between mb-3">
-                        <div className="flex-1">
-                          {project.client_name && (
-                            <p className="text-[var(--text-secondary)] body-sm font-medium mb-1">
-                              {project.client_name}
-                            </p>
-                          )}
-                          <h3 className="heading-xs text-[var(--text-primary)] mb-2">
-                            {project.title}
-                          </h3>
+                        {/* Cool Button Effect */}
+                        <div className="absolute bottom-6 left-6">
+                          <div className="w-12 h-12 rounded-full backdrop-blur-md bg-white/20 border border-white/30 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:border-white">
+                            <ArrowUpRight
+                              size={20}
+                              className="text-white transition-all duration-300 group-hover:text-black group-hover:rotate-45 group-hover:translate-x-0.5"
+                            />
+                          </div>
                         </div>
                       </div>
+                    </Link>
 
-                      {/* Description */}
-                      <p className="body-sm text-[var(--text-secondary)] mb-4 line-clamp-2">
-                        {project.short_description}
-                      </p>
-
-                      {/* Tech Tags */}
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.slice(0, 3).map((tech, index) => (
-                          <span
-                            key={index}
-                            className="px-2 py-1 text-xs bg-[var(--bg-tertiary)] text-[var(--text-secondary)] rounded-[10px]"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                        {project.technologies.length > 3 && (
-                          <span className="px-2 py-1 text-xs bg-[var(--bg-tertiary)] text-[var(--text-secondary)] rounded-[10px]">
-                            +{project.technologies.length - 3}
-                          </span>
-                        )}
-                      </div>
-                    </div>
+                    {/* Project Title - Outside Image */}
+                    <h3
+                      className="text-[var(--text-primary)] font-normal"
+                      style={{
+                        fontWeight: 400,
+                        fontSize: '23px',
+                        lineHeight: '28px'
+                      }}
+                    >
+                      {project.title}
+                    </h3>
                   </motion.div>
                 ))}
               </motion.div>
             </AnimatePresence>
           )}
 
-          {/* View All Button */}
+          {/* Contact Button */}
           <div className="flex justify-end">
-            <Link
-              to="/work"
+            <button
+              onClick={() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  const headerHeight = 80;
+                  const targetPosition = contactSection.offsetTop - headerHeight;
+                  window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+              }}
               className="group inline-flex items-center text-[var(--brand-secondary)] hover:text-[var(--brand-primary)] font-semibold transition-colors duration-200"
             >
-              View All Projects
+              Get In Touch
               <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">
                 →
               </span>
-            </Link>
+            </button>
           </div>
         </motion.div>
       </div>

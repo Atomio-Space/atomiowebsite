@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { getFeaturedProducts } from '../../data/mockData';
 
@@ -112,10 +111,20 @@ const ProductsSection = () => {
                     </div>
 
                     <div className="mt-8">
-                      <Link to={`/products/${product.slug}`} className="btn-primary inline-flex items-center">
-                        Explore {product.name}
+                      <button
+                        onClick={() => {
+                          const contactSection = document.getElementById('contact');
+                          if (contactSection) {
+                            const headerHeight = 80;
+                            const targetPosition = contactSection.offsetTop - headerHeight;
+                            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                          }
+                        }}
+                        className="btn-primary inline-flex items-center"
+                      >
+                        Get In Touch
                         <ArrowRight className="ml-2" size={18} />
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>

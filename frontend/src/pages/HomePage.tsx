@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import HeroSection from '../components/sections/HeroSection';
+import AboutSection from '../components/sections/AboutSection';
 import ServicesSection from '../components/sections/ServicesSection';
 import ProjectsSection from '../components/sections/ProjectsSection';
-import CustomerStoriesSection from '../components/sections/CustomerStoriesSection';
+//import CustomerStoriesSection from '../components/sections/CustomerStoriesSection';
+import ContactSection from '../components/sections/ContactSection';
 
 const HomePage = () => {
   useEffect(() => {
@@ -98,9 +100,11 @@ const HomePage = () => {
       exit="exit"
     >
       <HeroSection />
+      <AboutSection />
       <ProjectsSection />
       <ServicesSection />
-      <CustomerStoriesSection />
+      {/* <CustomerStoriesSection /> */}
+      <ContactSection />
     </motion.div>
   );
 };

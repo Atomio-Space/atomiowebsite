@@ -1,20 +1,26 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
+import ProjectDetailPage from './pages/ProjectDetailPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
 import UnderMaintenancePage from './pages/UnderMaintenancePage';
-import NotFoundPage from './pages/NotFoundPage';
-import ScrollToTop from './components/ui/ScrollToTop';
 import './index.css';
 
 
 
 export function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const location = useLocation();
 
   // Check if maintenance mode is enabled
   const isMaintenanceMode = import.meta.env.VITE_MAINTENANCE_MODE === 'true';
+
+  // Check if we're on a standalone page (no header/footer)
+  const isStandalonePage = location.pathname === '/privacy' ||
+                           location.pathname === '/terms';
 
   useEffect(() => {
     // Load fonts
@@ -54,27 +60,18 @@ export function App() {
   }
 
   return (
-    <Router>
-      <Routes>
-        {/* Maintenance page - no layout */}
-        <Route path="/maintenance" element={<UnderMaintenancePage />} />
-
-        {/* Home page - with layout */}
-        <Route path="/" element={
-          <div className="flex flex-col min-h-screen" style={{ fontFamily: 'Urbanist, sans-serif' }}>
-            <Header theme={theme} toggleTheme={toggleTheme} />
-            <main className="flex-grow">
-              <HomePage />
-            </main>
-            <ScrollToTop />
-            <Footer theme={theme} toggleTheme={toggleTheme} />
-          </div>
-        } />
-
-        {/* 404 page - no layout (catch all) */}
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Router>
+    <div className="flex flex-col min-h-screen" style={{ fontFamily: 'Urbanist, sans-serif' }}>
+      {!isStandalonePage && <Header theme={theme} toggleTheme={toggleTheme} />}
+      <main className={isStandalonePage ? '' : 'flex-grow'}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/project/:slug" element={<ProjectDetailPage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsOfServicePage />} />
+        </Routes>
+      </main>
+      {!isStandalonePage && <Footer theme={theme} toggleTheme={toggleTheme} />}
+    </div>
   );
 }
 

@@ -18,8 +18,8 @@
   # NPM version (optional)
   NPM_VERSION = "9"
 
-# Redirect rules for Single Page Application (SPA)
-# This ensures that all routes are handled by React Router
+# Redirect rules for Single Page Application
+# Since we're now using a one-page design, we only need basic redirects
 [[redirects]]
   from = "/*"
   to = "/index.html"

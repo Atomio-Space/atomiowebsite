@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
 
@@ -26,7 +25,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 pb-16 bg-[var(--bg-primary)]">
+    <section id="hero" className="min-h-screen flex items-center justify-center pt-20 pb-16 bg-[var(--bg-primary)]">
       <div className="container-md text-center px-4">
         <motion.div
           variants={containerVariants}
@@ -43,12 +42,32 @@ const HeroSection = () => {
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Link to="/contact" className="btn-primary">
+            <button
+              onClick={() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  const headerHeight = 80;
+                  const targetPosition = contactSection.offsetTop - headerHeight;
+                  window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+              }}
+              className="btn-primary"
+            >
               Let's Work Together
-            </Link>
-            <Link to="/work" className="btn-secondary">
+            </button>
+            <button
+              onClick={() => {
+                const workSection = document.getElementById('work');
+                if (workSection) {
+                  const headerHeight = 80;
+                  const targetPosition = workSection.offsetTop - headerHeight;
+                  window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+              }}
+              className="btn-secondary"
+            >
               View Our Work
-            </Link>
+            </button>
           </motion.div>
         </motion.div>
       </div>

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -13,12 +12,10 @@ const Header = ({}: HeaderProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { text: 'Home', href: '/' },
-    { text: 'Services', href: '/services' },
-    { text: 'Work', href: '/work' },
-    { text: 'Products', href: '/products' },
-    { text: 'About', href: '/about' },
-    { text: 'Blog', href: '/blog' },
+    { text: 'Home', href: '#hero' },
+    { text: 'About', href: '#about' },
+    { text: 'Work', href: '#work' },
+    { text: 'Services', href: '#services' },
   ];
 
   useEffect(() => {
@@ -30,6 +27,23 @@ const Header = ({}: HeaderProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (href: string) => {
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      const headerHeight = 80; // Account for fixed header
+      const targetPosition = targetElement.offsetTop - headerHeight;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header
       className={`fixed w-full z-50 transition-all duration-300 header-glass ${
@@ -40,27 +54,30 @@ const Header = ({}: HeaderProps) => {
     >
       <div className="max-w-7xl mx-auto px-12 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
+        <button
+          onClick={() => scrollToSection('#hero')}
+          className="flex items-center"
+        >
           <h1 className="logo text-[var(--brand-primary)] text-2xl">atomio</h1>
-        </Link>
+        </button>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
-            <Link
+            <button
               key={item.href}
-              to={item.href}
+              onClick={() => scrollToSection(item.href)}
               className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium"
             >
               {item.text}
-            </Link>
+            </button>
           ))}
-          <Link
-            to="/contact"
+          <button
+            onClick={() => scrollToSection('#contact')}
             className="btn-primary py-2 px-4"
           >
             Contact
-          </Link>
+          </button>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -84,22 +101,20 @@ const Header = ({}: HeaderProps) => {
           >
             <nav className="flex flex-col space-y-4">
               {navItems.map((item) => (
-                <Link
+                <button
                   key={item.href}
-                  to={item.href}
-                  className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium py-2"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => scrollToSection(item.href)}
+                  className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium py-2 text-left"
                 >
                   {item.text}
-                </Link>
+                </button>
               ))}
-              <Link
-                to="/contact"
+              <button
+                onClick={() => scrollToSection('#contact')}
                 className="btn-primary text-center"
-                onClick={() => setMobileMenuOpen(false)}
               >
                 Contact
-              </Link>
+              </button>
             </nav>
           </motion.div>
         )}

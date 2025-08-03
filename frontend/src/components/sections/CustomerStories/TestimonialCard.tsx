@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
 
 interface Author {
   name: string;
@@ -9,12 +8,11 @@ interface Author {
 
 interface TestimonialCardProps {
   quote: string;
-  readStoryUrl: string;
   author: Author;
   isVisible: boolean;
 }
 
-const TestimonialCard = ({ quote, readStoryUrl, author, isVisible }: TestimonialCardProps) => {
+const TestimonialCard = ({ quote, author, isVisible }: TestimonialCardProps) => {
   const cardVariants = {
     hidden: {
       opacity: 0,
@@ -47,12 +45,19 @@ const TestimonialCard = ({ quote, readStoryUrl, author, isVisible }: Testimonial
 
             {/* CTA Button */}
             <div className="mb-16">
-              <Link
-                to={readStoryUrl}
+              <button
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    const headerHeight = 80;
+                    const targetPosition = contactSection.offsetTop - headerHeight;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                  }
+                }}
                 className="btn-primary"
               >
-                Read story
-              </Link>
+                Get In Touch
+              </button>
             </div>
 
             {/* Author Info */}

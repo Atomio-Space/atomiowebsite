@@ -83,7 +83,7 @@ const CustomerStoriesSection = () => {
   }
 
   return (
-    <section className="section-padding bg-[var(--bg-primary)]">
+    <section id="about" className="section-padding bg-[var(--bg-primary)]">
       <div className="container-md">
         <div className="text-center mb-16">
           {/* Title */}
@@ -123,7 +123,6 @@ const CustomerStoriesSection = () => {
               {activeStory && (
                 <TestimonialCard
                   quote={activeStory.quote}
-                  readStoryUrl={activeStory.readStoryUrl}
                   author={activeStory.author}
                   isVisible={true}
                 />
