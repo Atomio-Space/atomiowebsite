@@ -7,6 +7,8 @@ import ProjectDetailPage from './pages/ProjectDetailPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import UnderMaintenancePage from './pages/UnderMaintenancePage';
+import NotFoundPage from './pages/NotFoundPage';
+import StartProjectPage from './pages/StartProjectPage';
 import './index.css';
 
 
@@ -18,9 +20,15 @@ export function App() {
   // Check if maintenance mode is enabled
   const isMaintenanceMode = import.meta.env.VITE_MAINTENANCE_MODE === 'true';
 
+  // Define valid routes
+  const validRoutes = ['/', '/privacy', '/terms', '/startproject'];
+  const isValidProjectRoute = location.pathname.startsWith('/project/');
+  const isValidRoute = validRoutes.includes(location.pathname) || isValidProjectRoute;
+
   // Check if we're on a standalone page (no header/footer)
   const isStandalonePage = location.pathname === '/privacy' ||
-                           location.pathname === '/terms';
+                           location.pathname === '/terms' ||
+                           !isValidRoute; // 404 pages are also standalone
 
   useEffect(() => {
     // Load fonts
@@ -59,6 +67,11 @@ export function App() {
     return <UnderMaintenancePage />;
   }
 
+  // If it's not a valid route, show the 404 page as standalone
+  if (!isValidRoute) {
+    return <NotFoundPage />;
+  }
+
   return (
     <div className="flex flex-col min-h-screen" style={{ fontFamily: 'Urbanist, sans-serif' }}>
       {!isStandalonePage && <Header theme={theme} toggleTheme={toggleTheme} />}
@@ -68,6 +81,7 @@ export function App() {
           <Route path="/project/:slug" element={<ProjectDetailPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsOfServicePage />} />
+          <Route path="/startproject" element={<StartProjectPage />} />
         </Routes>
       </main>
       {!isStandalonePage && <Footer theme={theme} toggleTheme={toggleTheme} />}

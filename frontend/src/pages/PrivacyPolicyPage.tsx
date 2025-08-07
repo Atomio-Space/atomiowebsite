@@ -1,28 +1,27 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import Header from '../components/layout/Header';
 
 const PrivacyPolicyPage = () => {
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)]">
-      {/* Header */}
-      <header className="fixed w-full z-50 bg-[var(--bg-primary)] border-b border-[var(--border-color)] px-6 py-4">
-        <div className="max-w-[1200px] mx-auto flex items-center justify-between">
-          <Link 
-            to="/" 
-            className="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--brand-primary)] transition-colors"
-          >
-            <ArrowLeft size={20} />
-            <span>Back to Home</span>
-          </Link>
-          
-          <h1 className="logo text-[var(--brand-primary)] text-xl">atomio</h1>
-          
-          <div></div> {/* Spacer for center alignment */}
+    <>
+      <Header />
+      <div className="min-h-screen bg-[var(--bg-primary)]">
+        {/* Back to Home Link */}
+        <div className="pt-20 pb-4">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <Link 
+              to="/" 
+              className="inline-flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--brand-primary)] transition-colors"
+            >
+              <ArrowLeft size={20} />
+              <span>Back to Home</span>
+            </Link>
+          </div>
         </div>
-      </header>
 
-      {/* Main Content */}
-      <div className="pt-20 pb-16">
+        {/* Main Content */}
+        <div className="pb-16">
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="max-w-4xl">
             <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-8">
@@ -165,8 +164,9 @@ const PrivacyPolicyPage = () => {
             </div>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const ContactSection = () => {
   const sectionVariants = {
@@ -59,9 +60,9 @@ const ContactSection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <button className="btn-primary">
+                  <Link to="/startproject" className="btn-primary">
                     Start a project
-                  </button>
+                  </Link>
                 </motion.div>
               </div>
 

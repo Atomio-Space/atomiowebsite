@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Home, ArrowLeft, AlertTriangle, Linkedin, X, Github } from 'lucide-react';
+import { Home, ArrowLeft, AlertTriangle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const NotFoundPage = () => {
@@ -12,43 +12,32 @@ const NotFoundPage = () => {
           <h1 className="logo text-[var(--brand-primary)] text-2xl hover:text-[var(--brand-secondary)] transition-colors">atomio</h1>
         </Link>
 
-        {/* Social Media Icons - Right Side */}
-        <div className="flex items-center space-x-4">
-          <motion.a
-            href="https://linkedin.com/company/atomio-tech"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-10 h-10 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center hover:bg-[var(--brand-primary)] transition-colors group"
-            aria-label="LinkedIn"
+        {/* Start a project button - Right Side */}
+        <div className="flex items-center space-x-1">
+          <Link
+            to="/startproject"
+            className="group relative px-4 py-2 text-[var(--text-primary)] btn-custom-text border border-[var(--brand-primary)] hover:text-[var(--brand-primary)] transition-all duration-300 overflow-hidden"
           >
-            <Linkedin className="w-4 h-4 text-[var(--text-secondary)] group-hover:text-white transition-colors" />
-          </motion.a>
-
-          <motion.a
-            href="https://twitter.com/atomio_tech"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-10 h-10 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center hover:bg-[var(--brand-primary)] transition-colors group"
-            aria-label="Twitter"
+            {/* Animated glowing border */}
+            <div className="absolute inset-0 opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--brand-primary)] via-[var(--brand-secondary)] to-[var(--brand-primary)] bg-[length:200%_100%] animate-[shimmer_2s_ease-in-out_infinite] p-[1px]">
+                <div className="w-full h-full bg-[var(--bg-primary)]"></div>
+              </div>
+            </div>
+            <span className="relative z-10">START A PROJECT</span>
+          </Link>
+          <Link
+            to="/startproject"
+            className="group relative px-2 py-2 border border-[var(--brand-primary)] hover:text-[var(--brand-primary)] transition-all duration-300 flex items-center justify-center overflow-hidden"
           >
-            <X className="w-4 h-4 text-[var(--text-secondary)] group-hover:text-white transition-colors" />
-          </motion.a>
-
-          <motion.a
-            href="https://github.com/atomio-tech"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-10 h-10 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center hover:bg-[var(--brand-primary)] transition-colors group"
-            aria-label="GitHub"
-          >
-            <Github className="w-4 h-4 text-[var(--text-secondary)] group-hover:text-white transition-colors" />
-          </motion.a>
+            {/* Animated glowing border */}
+            <div className="absolute inset-0 opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--brand-primary)] via-[var(--brand-secondary)] to-[var(--brand-primary)] bg-[length:200%_100%] animate-[shimmer_2s_ease-in-out_infinite] p-[1px]">
+                <div className="w-full h-full bg-[var(--bg-primary)]"></div>
+              </div>
+            </div>
+            <ArrowRight className="w-4 h-4 text-[var(--text-secondary)] group-hover:text-[var(--brand-primary)] transition-colors relative z-10" />
+          </Link>
         </div>
       </header>
 

@@ -4,14 +4,15 @@
 
 A modern, clean website for Atomio Technologies - a cutting-edge tech agency specializing in enterprise software solutions, AI development, and custom digital products.
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/Atomio-Space/atomiowebsite.git
 cd atomio-website
 
 # Install dependencies
+cd frontend
 npm install
 
 # Start development server
@@ -24,7 +25,7 @@ npm run build
 npm run preview
 ```
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Frontend Framework**: React 18 + Vite
 - **Language**: TypeScript
@@ -34,7 +35,7 @@ npm run preview
 - **Fonts**: Orbitron (logo), Urbanist (content)
 - **Deployment**: [To be determined]
 
-## 📋 Project Structure
+## Project Structure
 
 ```
 src/
@@ -50,7 +51,7 @@ src/
 └── styles/             # Global styles and Tailwind config
 ```
 
-## 🎨 Design System
+## Design System
 
 ### Color Palette
 
@@ -79,7 +80,7 @@ src/
 - Minimal color usage with strategic brand accent application
 - Clean, modern aesthetic targeting enterprise clients
 
-## 🏗 Features
+## Features
 
 ### Core Pages
 - **Homepage**: Hero, work showcase, services, clients, blog preview
@@ -105,7 +106,7 @@ src/
 - **Theme Toggle**: Light/dark mode switching
 - **Mobile Responsive**: Optimized for all devices
 
-## 📊 Data Management
+## Data Management
 
 ### Supabase Tables
 - `services` - Service offerings and descriptions
@@ -117,13 +118,13 @@ src/
 - `leads` - Contact form submissions
 - `job_applications` - Career interest submissions
 
-## 🎯 Target Audience
+## Target Audience
 
 **Primary**: Enterprise decision-makers seeking technology solutions
 **Secondary**: Startups and growing businesses needing digital transformation
 **Tertiary**: Technical professionals interested in AI and software development
 
-## 📈 Business Goals
+## Business Goals
 
 1. **Lead Generation**: Convert visitors into qualified business leads
 2. **Product Awareness**: Showcase Sema AI and Seamo capabilities
@@ -131,7 +132,7 @@ src/
 4. **Talent Acquisition**: Attract top-tier technical talent
 5. **Client Retention**: Strengthen relationships with existing clients
 
-## 🔧 Development Guidelines
+## Development Guidelines
 
 ### Code Standards
 - TypeScript strict mode enabled
@@ -152,7 +153,7 @@ src/
 - Screen reader optimization
 - Color contrast validation
 
-## 🚢 Deployment
+## Deployment
 
 ### Environment Variables
 ```bash
@@ -167,17 +168,17 @@ VITE_SITE_URL=your_domain
 3. Build production: `npm run build`
 4. Deploy to hosting platform
 
-## 📞 Support
+## Support
 
 For development questions or technical support:
-- **Development Team**: [team@atomio.tech]
-- **Project Lead**: [lead@atomio.tech]
+- **Development Team**: [info@atomio.tech]
+- **Project Lead**: [lewis@atomio.tech]
 - **Repository Issues**: Use GitHub issues for bug reports
 
-## 📄 License
+## License
 
 Proprietary - Atomio Technologies. All rights reserved.
 
 ---
 
-**Built with precision. Designed for impact. Engineered for enterprise.**
+**Software that makes your Work Easier**

@@ -16,45 +16,45 @@ const ServicesSection = () => {
       id: '1',
       number: '01',
       title: 'Custom Software Development',
-      description: 'We create tailored software solutions that perfectly align with your business processes and strategic goals. From concept to deployment, our team builds robust applications that streamline operations, enhance user experiences, and drive measurable business outcomes through innovative technology implementations.',
+      description: 'Transform your business operations with bespoke software solutions designed specifically for your unique challenges. We build scalable, secure applications that automate processes, improve efficiency, and give you a competitive edge in your market.',
       image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
       features: [
-        'Web Applications',
-        'Mobile Apps',
-        'Desktop Software',
-        'API Development',
-        'Database Design',
-        'System Integration'
+        'Enterprise Web Applications',
+        'Mobile App Development',
+        'API & System Integration',
+        'Database Architecture',
+        'Legacy System Modernization',
+        'Custom Business Tools'
       ]
     },
     {
       id: '2',
       number: '02',
-      title: 'AI & Automation Solutions',
-      description: 'Transform your workflows with intelligent automation and AI-powered tools that enhance productivity and decision-making. We implement cutting-edge machine learning algorithms, natural language processing systems, and automated workflows that reduce manual tasks while improving accuracy and efficiency.',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      title: 'Website Design & Development',
+      description: 'Establish a powerful digital presence with professionally designed websites that convert visitors into customers. We create responsive, fast-loading sites optimized for search engines and user experience to drive business growth.',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
       features: [
-        'Process Automation',
-        'Machine Learning',
-        'Natural Language Processing',
-        'Predictive Analytics',
-        'Chatbots & Virtual Assistants',
-        'Data Mining'
+        'Responsive Web Design',
+        'E-commerce Platforms',
+        'Content Management Systems',
+        'SEO Optimization',
+        'Performance Analytics',
+        'Brand Identity Integration'
       ]
     },
     {
       id: '3',
       number: '03',
-      title: 'Cloud Infrastructure',
-      description: 'Build scalable, secure, and reliable cloud solutions that grow with your business needs. Our cloud experts design and implement robust infrastructure architectures that ensure high availability, optimal performance, and cost-effectiveness while maintaining the highest security standards and compliance requirements.',
-      image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      title: 'AI Solutions',
+      description: 'Harness the power of artificial intelligence to automate complex tasks, gain valuable insights from your data, and make smarter business decisions. Our AI solutions reduce costs while improving accuracy and operational efficiency.',
+      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
       features: [
-        'Cloud Migration',
-        'DevOps Implementation',
-        'Infrastructure as Code',
-        'Container Orchestration',
-        'Security & Compliance',
-        'Performance Optimization'
+        'Intelligent Process Automation',
+        'Predictive Analytics',
+        'Natural Language Processing',
+        'Computer Vision Solutions',
+        'Chatbots & Virtual Assistants',
+        'Machine Learning Models'
       ]
     }
   ];
@@ -140,8 +140,8 @@ const ServicesSection = () => {
                     </div>
                   </div>
 
-                  {/* Service Content */}
-                  <div className="lg:col-span-4 space-y-4">
+                  {/* Service Content - Expanded */}
+                  <div className="lg:col-span-5 space-y-4">
                     {/* Number and Title */}
                     <div className="flex items-center gap-4">
                       <span className="text-[var(--text-muted)] text-sm font-medium tracking-wider">
@@ -172,9 +172,9 @@ const ServicesSection = () => {
                     </p>
                   </div>
 
-                  {/* Features List - Two Columns */}
-                  <div className="lg:col-span-4">
-                    <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+                  {/* Features List - Single Column */}
+                  <div className="lg:col-span-3">
+                    <div className="space-y-2">
                       {service.features.map((feature, featureIndex) => (
                         <div
                           key={featureIndex}

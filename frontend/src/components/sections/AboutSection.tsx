@@ -51,7 +51,7 @@ const AboutSection = () => {
                         className="text-[56px] leading-[62px] font-normal text-[var(--text-primary)] text-left mb-16 max-w-full"
                         style={{ fontWeight: 400 }}
                     >
-                        We partner with businesses to transform how they connect, create, and accomplish their most important work
+                        Atomio partners with businesses to build technology that drives growth, efficiency, and competitive advantage
                     </motion.h2>
 
                     {/* Supporting Content - Right Half Only */}
@@ -71,13 +71,13 @@ const AboutSection = () => {
                                 className="text-[16px] font-normal text-[var(--text-secondary)] text-left"
                                 style={{ fontWeight: 400, lineHeight: '22px' }}
                             >
-                                From custom applications to AI automation, we create technology solutions that streamline operations and eliminate complexity for modern businesses.
+                                Every business faces unique challenges that require tailored solutions. We specialize in creating custom software, intelligent websites, and AI-powered systems that solve real problems and deliver measurable results for our clients.
                             </p>
                             <p
                                 className="text-[16px] font-normal text-[var(--text-secondary)] text-left"
                                 style={{ fontWeight: 400, lineHeight: '22px' }}
                             >
-                                Our expertise transforms manual processes into efficient digital workflows, helping teams focus on what matters most while technology handles the rest.
+                                Our approach combines deep technical expertise with business acumen to ensure every solution we build directly contributes to your bottom line, operational efficiency, and long-term strategic goals.
                             </p>
                         </div>
                     </motion.div>

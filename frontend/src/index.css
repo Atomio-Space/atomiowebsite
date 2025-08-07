@@ -2,6 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Custom button text size */
+.btn-custom-text {
+  font-size: 14px !important;
+  line-height: 14px !important;
+  font-weight: 400 !important;
+}
+
+/* Input field backgrounds - pure white in light theme, theme-aware in dark */
+.input-bg {
+  background-color: white;
+}
+
+:root[data-theme="dark"] .input-bg {
+  background-color: var(--bg-secondary);
+}
+
+/* Selection button backgrounds - pure white in light theme, theme-aware in dark */
+.selector-bg {
+  background-color: white;
+}
+
+:root[data-theme="dark"] .selector-bg {
+  background-color: var(--bg-secondary);
+}
+
+/* Selection button hover backgrounds */
+.selector-hover:hover {
+  background-color: #f9fafb;
+}
+
+:root[data-theme="dark"] .selector-hover:hover {
+  background-color: var(--bg-tertiary);
+}
+
 :root {
   /* Light Theme */
   --bg-primary: #FDFCF9;

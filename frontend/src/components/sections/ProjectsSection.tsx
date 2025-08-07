@@ -16,7 +16,7 @@ interface Project {
   technologies: string[];
 }
 
-type FilterType = 'all' | 'client' | 'product' | 'design';
+type FilterType = 'all' | 'client' | 'product';
 
 const ProjectsSection = () => {
   const [allProjects, setAllProjects] = useState<Project[]>([]);
@@ -26,9 +26,8 @@ const ProjectsSection = () => {
 
   const filterTabs = [
     { id: 'all' as FilterType, label: 'All' },
-    { id: 'client' as FilterType, label: 'Client Projects' },
+    { id: 'client' as FilterType, label: 'Projects' },
     { id: 'product' as FilterType, label: 'Products' },
-    { id: 'design' as FilterType, label: 'Design' },
   ];
 
   useEffect(() => {

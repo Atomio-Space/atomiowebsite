@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface HeaderProps {
   theme?: 'light' | 'dark';
@@ -10,6 +11,8 @@ interface HeaderProps {
 const Header = ({}: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
     { text: 'Home', href: '#hero' },
@@ -27,18 +30,26 @@ const Header = ({}: HeaderProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const targetId = href.replace('#', '');
-    const targetElement = document.getElementById(targetId);
+  const handleNavigation = (href: string) => {
+    const isHomePage = location.pathname === '/';
+    
+    if (isHomePage) {
+      // If we're on the home page, scroll to section
+      const targetId = href.replace('#', '');
+      const targetElement = document.getElementById(targetId);
 
-    if (targetElement) {
-      const headerHeight = 80; // Account for fixed header
-      const targetPosition = targetElement.offsetTop - headerHeight;
+      if (targetElement) {
+        const headerHeight = 80; // Account for fixed header
+        const targetPosition = targetElement.offsetTop - headerHeight;
 
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      // If we're on another page, navigate to home with hash
+      navigate(`/${href}`);
     }
 
     setMobileMenuOpen(false);
@@ -55,8 +66,8 @@ const Header = ({}: HeaderProps) => {
       <div className="max-w-7xl mx-auto px-12 flex items-center justify-between">
         {/* Logo */}
         <button
-          onClick={() => scrollToSection('#hero')}
-          className="flex items-center"
+          onClick={() => handleNavigation('#hero')}
+          className="flex items-center hover:opacity-80 transition-opacity"
         >
           <h1 className="logo text-[var(--brand-primary)] text-2xl">atomio</h1>
         </button>
@@ -66,15 +77,15 @@ const Header = ({}: HeaderProps) => {
           {navItems.map((item) => (
             <button
               key={item.href}
-              onClick={() => scrollToSection(item.href)}
+              onClick={() => handleNavigation(item.href)}
               className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium"
             >
               {item.text}
             </button>
           ))}
           <button
-            onClick={() => scrollToSection('#contact')}
-            className="btn-primary py-2 px-4"
+            onClick={() => handleNavigation('#contact')}
+            className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium"
           >
             Contact
           </button>
@@ -103,15 +114,15 @@ const Header = ({}: HeaderProps) => {
               {navItems.map((item) => (
                 <button
                   key={item.href}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavigation(item.href)}
                   className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium py-2 text-left"
                 >
                   {item.text}
                 </button>
               ))}
               <button
-                onClick={() => scrollToSection('#contact')}
-                className="btn-primary text-center"
+                onClick={() => handleNavigation('#contact')}
+                className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium py-2 text-left"
               >
                 Contact
               </button>
