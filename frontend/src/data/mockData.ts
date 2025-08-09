@@ -129,127 +129,7 @@ export const products = [
   }
 ];
 
-// Projects data
-export const projects = [
-  {
-    id: "1",
-    title: "Enterprise Data Platform",
-    slug: "enterprise-data-platform",
-    client_name: "Global Financial Services Corp",
-    project_type: "client",
-    category: "data_engineering",
-    short_description: "A scalable data platform that processes millions of transactions daily for real-time analytics and reporting.",
-    image_url: "https://images.unsplash.com/photo-1546146830-2cca9512c68e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["Apache Spark", "Kubernetes", "Snowflake", "Airflow", "Tableau"],
-    features: ["Real-time data processing", "Automated ETL pipelines", "Executive dashboards", "Regulatory reporting"],
-    is_featured: true,
-    is_public: true,
-    status: "completed"
-  },
-  {
-    id: "2",
-    title: "AI-Powered Customer Service",
-    slug: "ai-customer-service",
-    client_name: "TechRetail Inc",
-    project_type: "client",
-    category: "ai_solution",
-    short_description: "An intelligent customer service platform that uses AI to resolve 70% of inquiries without human intervention.",
-    image_url: "https://images.unsplash.com/photo-1596524430615-b46475ddff6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["OpenAI GPT", "React", "Node.js", "PostgreSQL", "Redis"],
-    features: ["Natural language understanding", "Sentiment analysis", "Automated response generation", "Agent assistance"],
-    is_featured: true,
-    is_public: true,
-    status: "completed"
-  },
-  {
-    id: "3",
-    title: "Cloud Migration & Modernization",
-    slug: "cloud-migration",
-    client_name: "Manufacturing Leader Corp",
-    project_type: "client",
-    category: "cloud_architecture",
-    short_description: "Complete migration of legacy systems to a modern cloud architecture, reducing costs by 40% while improving performance.",
-    image_url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["AWS", "Terraform", "Docker", "Kubernetes", "CI/CD"],
-    features: ["Microservices architecture", "Infrastructure as code", "Automated testing", "Zero-downtime deployment"],
-    is_featured: true,
-    is_public: true,
-    status: "completed"
-  },
-  {
-    id: "4",
-    title: "Secure Healthcare Platform",
-    slug: "healthcare-platform",
-    client_name: "MedTech Innovations",
-    project_type: "client",
-    category: "web_app",
-    short_description: "HIPAA-compliant healthcare platform connecting patients, providers, and insurers in a secure digital ecosystem.",
-    image_url: "https://images.unsplash.com/photo-1504439468489-c8920d796a29?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["React", "Node.js", "PostgreSQL", "Azure", "FHIR"],
-    features: ["End-to-end encryption", "Identity verification", "Medical record integration", "Insurance processing"],
-    is_featured: true,
-    is_public: true,
-    status: "completed"
-  },
-  {
-    id: "5",
-    title: "Sema AI Translation Platform",
-    slug: "sema-ai-platform",
-    project_type: "product",
-    category: "ai_solution",
-    short_description: "Revolutionary AI-powered translation platform breaking language barriers for global businesses.",
-    image_url: "https://images.unsplash.com/photo-1546146830-2cca9512c68e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["Python", "TensorFlow", "React", "FastAPI", "Docker"],
-    features: ["Real-time translation", "Context awareness", "API integration", "Custom vocabulary"],
-    is_featured: true,
-    is_public: true,
-    status: "completed"
-  },
-  {
-    id: "6",
-    title: "Seamo Research Platform",
-    slug: "seamo-research-platform",
-    project_type: "product",
-    category: "web_app",
-    short_description: "Specialized project management platform designed for marine research organizations and scientists.",
-    image_url: "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["React", "Node.js", "MongoDB", "AWS", "D3.js"],
-    features: ["Research workflows", "Data collection", "Collaboration tools", "Grant management"],
-    is_featured: true,
-    is_public: true,
-    status: "completed"
-  },
-  {
-    id: "7",
-    title: "Brand Identity System",
-    slug: "brand-identity-system",
-    client_name: "StartupTech Inc",
-    project_type: "design",
-    category: "branding",
-    short_description: "Complete brand identity and design system for a fast-growing technology startup.",
-    image_url: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["Figma", "Adobe Creative Suite", "Design Tokens", "Storybook"],
-    features: ["Logo design", "Color palette", "Typography system", "Component library"],
-    is_featured: true,
-    is_public: true,
-    status: "completed"
-  },
-  {
-    id: "8",
-    title: "Mobile App UI/UX Design",
-    slug: "mobile-app-design",
-    client_name: "FinanceFlow",
-    project_type: "design",
-    category: "ui_ux",
-    short_description: "User-centered design for a financial management mobile application with focus on accessibility.",
-    image_url: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["Figma", "Principle", "UserTesting", "Accessibility Tools"],
-    features: ["User research", "Wireframing", "Prototyping", "Usability testing"],
-    is_featured: true,
-    is_public: true,
-    status: "completed"
-  }
-];
+
 
 // Blog posts data
 export const blogPosts = [
@@ -410,15 +290,7 @@ export async function getFeaturedServices() {
   return services.filter(service => service.is_featured && service.status === 'active');
 }
 
-export async function getProjects() {
-  await new Promise(resolve => setTimeout(resolve, 100));
-  return projects.filter(project => project.is_public && project.status === 'completed');
-}
 
-export async function getFeaturedProjects() {
-  await new Promise(resolve => setTimeout(resolve, 100));
-  return projects.filter(project => project.is_featured && project.is_public && project.status === 'completed');
-}
 
 export async function getProducts() {
   await new Promise(resolve => setTimeout(resolve, 100));

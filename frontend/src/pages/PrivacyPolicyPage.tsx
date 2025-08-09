@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import Header from '../components/layout/Header';
+import PageTransition from '../components/ui/PageTransition';
 
 const PrivacyPolicyPage = () => {
   return (
-    <>
+    <PageTransition>
       <Header />
       <div className="min-h-screen bg-[var(--bg-primary)]">
         {/* Back to Home Link */}
@@ -166,7 +167,7 @@ const PrivacyPolicyPage = () => {
         </div>
         </div>
       </div>
-    </>
+    </PageTransition>
   );
 };
 

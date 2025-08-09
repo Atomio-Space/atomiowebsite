@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import PageTransition from '../components/ui/PageTransition';
 import HeroSection from '../components/sections/HeroSection';
 import AboutSection from '../components/sections/AboutSection';
 import ServicesSection from '../components/sections/ServicesSection';
@@ -83,29 +83,40 @@ const HomePage = () => {
     };
   }, []);
 
-  const pageVariants = {
-    initial: { opacity: 0 },
-    animate: {
-      opacity: 1,
-      transition: { duration: 0.5, when: "beforeChildren" }
-    },
-    exit: { opacity: 0 }
-  };
+  // Handle navigation from other pages to specific sections
+  useEffect(() => {
+    const scrollToSection = sessionStorage.getItem('scrollToSection');
+    if (scrollToSection) {
+      // Clear the stored section
+      sessionStorage.removeItem('scrollToSection');
+
+      // Wait for the page to fully render and animations to complete
+      const timer = setTimeout(() => {
+        const targetElement = document.getElementById(scrollToSection);
+        if (targetElement) {
+          const headerHeight = 80; // Account for fixed header
+          const targetPosition = targetElement.offsetTop - headerHeight;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 600); // Wait for page transition animation to complete
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   return (
-    <motion.div
-      variants={pageVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
+    <PageTransition>
       <HeroSection />
       <AboutSection />
       <ProjectsSection />
       <ServicesSection />
       {/* <CustomerStoriesSection /> */}
       <ContactSection />
-    </motion.div>
+    </PageTransition>
   );
 };
 

@@ -32,10 +32,10 @@ const Header = ({}: HeaderProps) => {
 
   const handleNavigation = (href: string) => {
     const isHomePage = location.pathname === '/';
-    
+    const targetId = href.replace('#', '');
+
     if (isHomePage) {
-      // If we're on the home page, scroll to section
-      const targetId = href.replace('#', '');
+      // If we're on the home page, scroll to section immediately
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
@@ -48,8 +48,10 @@ const Header = ({}: HeaderProps) => {
         });
       }
     } else {
-      // If we're on another page, navigate to home with hash
-      navigate(`/${href}`);
+      // If we're on another page, navigate to home and store the target section
+      // We'll use sessionStorage to remember which section to scroll to
+      sessionStorage.setItem('scrollToSection', targetId);
+      navigate('/');
     }
 
     setMobileMenuOpen(false);
@@ -59,35 +61,55 @@ const Header = ({}: HeaderProps) => {
     <header
       className={`fixed w-full z-50 transition-all duration-300 header-glass ${
         isScrolled
-          ? 'header-scrolled py-2'
-          : 'header-transparent py-3'
+          ? 'header-scrolled py-2 sm:py-2 md:py-3'
+          : 'header-transparent py-3 sm:py-4 md:py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-12 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex items-center justify-between">
         {/* Logo */}
         <button
           onClick={() => handleNavigation('#hero')}
           className="flex items-center hover:opacity-80 transition-opacity"
         >
-          <h1 className="logo text-[var(--brand-primary)] text-2xl">atomio</h1>
+          <h1 className="logo text-[var(--brand-primary)] text-xl sm:text-2xl md:text-2xl lg:text-2xl">atomio</h1>
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
           {navItems.map((item) => (
             <button
               key={item.href}
               onClick={() => handleNavigation(item.href)}
-              className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium"
+              className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium text-sm lg:text-base"
             >
               {item.text}
             </button>
           ))}
           <button
             onClick={() => handleNavigation('#contact')}
-            className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium"
+            className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium text-sm lg:text-base"
           >
             Contact
+          </button>
+        </nav>
+
+        {/* Tablet Navigation */}
+        <nav className="hidden md:flex lg:hidden items-center space-x-4">
+          {navItems.slice(0, 3).map((item) => (
+            <button
+              key={item.href}
+              onClick={() => handleNavigation(item.href)}
+              className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium text-sm"
+            >
+              {item.text}
+            </button>
+          ))}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded-full hover:bg-[var(--bg-secondary)] transition-colors"
+            aria-label="Toggle menu"
+          >
+            <Menu size={20} />
           </button>
         </nav>
 
@@ -98,31 +120,31 @@ const Header = ({}: HeaderProps) => {
             className="p-2 rounded-full hover:bg-[var(--bg-secondary)] transition-colors"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile/Tablet Menu */}
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-0 right-0 mobile-menu-glass md:hidden p-4"
+            className="absolute top-full left-0 right-0 mobile-menu-glass lg:hidden p-4 sm:p-6"
           >
-            <nav className="flex flex-col space-y-4">
+            <nav className="flex flex-col space-y-3 sm:space-y-4">
               {navItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => handleNavigation(item.href)}
-                  className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium py-2 text-left"
+                  className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium py-2 text-left text-base sm:text-lg"
                 >
                   {item.text}
                 </button>
               ))}
               <button
                 onClick={() => handleNavigation('#contact')}
-                className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium py-2 text-left"
+                className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium py-2 text-left text-base sm:text-lg"
               >
                 Contact
               </button>

@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ExternalLink, Calendar, User, Tag, Globe, Github } from 'lucide-react';
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Header from '../components/layout/Header';
+import PageTransition from '../components/ui/PageTransition';
+import ContactSection from '../components/sections/ContactSection';
+import { getProjects, getProjectGalleryImages } from '../data/projectsData';
 
 interface ProjectDetail {
   id: string;
@@ -12,49 +15,76 @@ interface ProjectDetail {
   project_type: string;
   category: string;
   short_description: string;
-  full_description: string;
+  full_description?: string;
+  challenge?: string;
+  solution?: string;
+  results?: string;
   image_url: string;
+  gallery_images?: string[];
   technologies: string[];
-  live_url?: string;
-  screenshots?: string[];
-  completion_date?: string;
-  team_size?: number;
-  duration?: string;
+  features: string[];
+  project_url?: string;
+  is_featured: boolean;
+  is_public: boolean;
+  status: string;
+}
+
+interface ProjectNavigation {
+  previous?: {
+    slug: string;
+    title: string;
+  };
+  next?: {
+    slug: string;
+    title: string;
+  };
 }
 
 const ProjectDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const [project, setProject] = useState<ProjectDetail | null>(null);
+  const [navigation, setNavigation] = useState<ProjectNavigation>({});
+  const [galleryImages, setGalleryImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadProject = async () => {
       try {
-        // Mock project data - in real app, fetch from API
-        const mockProject: ProjectDetail = {
-          id: '1',
-          title: 'E-commerce Platform',
-          slug: 'e-commerce-platform',
-          client_name: 'TechCorp Solutions',
-          project_type: 'client',
-          category: 'web_development',
-          short_description: 'A comprehensive e-commerce platform built for modern businesses.',
-          full_description: 'We developed a comprehensive e-commerce platform that revolutionizes online shopping experiences. The platform features advanced product management, secure payment processing, real-time inventory tracking, and intelligent recommendation systems. Built with scalability in mind, it handles thousands of concurrent users while maintaining optimal performance.',
-          image_url: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-          technologies: ['React', 'Node.js', 'PostgreSQL', 'Redis', 'AWS', 'Stripe'],
-          live_url: 'https://example-ecommerce.com',
-          screenshots: [
-            'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
-            'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
-            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
-            'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80'
-          ],
-          completion_date: '2024-01-15',
-          team_size: 5,
-          duration: '4 months'
-        };
+        // Load projects from projectsData
+        const projects = await getProjects();
+        const foundProject = projects.find(p => p.slug === slug);
 
-        setProject(mockProject);
+        if (foundProject) {
+          setProject(foundProject);
+
+          // Dynamically load available gallery images
+          if (slug) {
+            const dynamicGalleryImages = await getProjectGalleryImages(slug);
+            setGalleryImages(dynamicGalleryImages);
+          }
+
+          // Set up navigation to other projects
+          const currentIndex = projects.findIndex(p => p.slug === slug);
+          const navigation: ProjectNavigation = {};
+
+          if (currentIndex > 0) {
+            const prevProject = projects[currentIndex - 1];
+            navigation.previous = {
+              slug: prevProject.slug,
+              title: prevProject.title
+            };
+          }
+
+          if (currentIndex < projects.length - 1) {
+            const nextProject = projects[currentIndex + 1];
+            navigation.next = {
+              slug: nextProject.slug,
+              title: nextProject.title
+            };
+          }
+
+          setNavigation(navigation);
+        }
       } catch (error) {
         console.error('Error loading project:', error);
       } finally {
@@ -92,231 +122,262 @@ const ProjectDetailPage = () => {
     );
   }
 
+  const truncateTitle = (title: string, maxLength: number = 30) => {
+    return title.length > maxLength ? title.substring(0, maxLength) + '...' : title;
+  };
+
   return (
-    <>
+    <PageTransition>
       <Header />
       <div className="min-h-screen bg-[var(--bg-primary)]">
-        {/* Hero Section */}
-        <section className="pt-24 pb-16">
-          <div className="max-w-7xl mx-auto px-6">
-            {/* Back Navigation */}
+        <section className="pt-20 sm:pt-24 pb-12 sm:pb-16">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
+
+            {/* 1. Project Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mb-6 sm:mb-8"
+            >
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] leading-tight">
+                {project.title}
+              </h1>
+            </motion.div>
+
+            {/* 2. Project Metadata - Horizontal List */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-8"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-6 sm:mb-8"
             >
-              <Link
-                to="/#work"
-                className="inline-flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--brand-primary)] transition-colors group"
-              >
-                <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-                <span>Back to Work</span>
-              </Link>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <div>
+                  <div className="text-xs sm:text-sm font-medium text-[var(--text-secondary)] mb-1">Client</div>
+                  <div className="text-sm sm:text-base text-[var(--text-primary)] font-medium">{project.client_name || 'Atomio Product'}</div>
+                </div>
+                <div>
+                  <div className="text-xs sm:text-sm font-medium text-[var(--text-secondary)] mb-1">Category</div>
+                  <div className="text-sm sm:text-base text-[var(--text-primary)] font-medium">{project.category.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}</div>
+                </div>
+                <div>
+                  <div className="text-xs sm:text-sm font-medium text-[var(--text-secondary)] mb-1">Type</div>
+                  <div className="text-sm sm:text-base text-[var(--text-primary)] font-medium">{project.project_type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}</div>
+                </div>
+                <div>
+                  <div className="text-xs sm:text-sm font-medium text-[var(--text-secondary)] mb-1">Status</div>
+                  <div className="text-sm sm:text-base text-[var(--text-primary)] font-medium">{project.status.replace(/\b\w/g, l => l.toUpperCase())}</div>
+                </div>
+              </div>
             </motion.div>
 
-            {/* Project Header */}
-            <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
+            {/* 3. Visit Tool/Website Section */}
+            {project.project_url && (
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mb-8 sm:mb-12"
               >
-                <h1 className="text-5xl lg:text-6xl font-bold text-[var(--text-primary)] mb-4 leading-tight">
-                  {project.title}
-                </h1>
-                {project.client_name && (
-                  <p className="text-xl text-[var(--text-secondary)] mb-6">
-                    for {project.client_name}
-                  </p>
-                )}
-                <p className="text-lg text-[var(--text-secondary)] leading-relaxed mb-8">
-                  {project.full_description}
-                </p>
+                <div className="flex flex-col sm:flex-row sm:items-stretch gap-2 sm:gap-0">
+                  {/* Visit Label - Mobile: Full width, Desktop: Auto width */}
+                  <div className="flex items-center sm:pr-4">
+                    <span className="text-sm sm:text-base text-[var(--text-primary)] font-medium">Visit</span>
+                  </div>
 
-                {/* Action Buttons */}
-                <div className="flex flex-wrap gap-4">
-                  {project.live_url && (
+                  {/* URL Container - Responsive flex container */}
+                  <div className="flex flex-1 items-stretch gap-[5px]">
+                    {/* URL Link - Takes most space */}
                     <a
-                      href={project.live_url}
+                      href={project.project_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 btn-primary px-6 py-3 hover:scale-105 transition-transform"
+                      className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-[var(--bg-secondary)] border border-[var(--text-secondary)] rounded-md sm:rounded-lg text-xs sm:text-sm md:text-base text-[var(--text-secondary)] hover:text-[var(--text-primary)] cursor-pointer transition-colors duration-200 min-w-0"
                     >
-                      <ExternalLink size={18} />
-                      <span>View Live Site</span>
+                      <span className="block truncate sm:hidden">
+                        {project.project_url.replace(/^https?:\/\//, '').split('/')[0]}
+                      </span>
+                      <span className="hidden sm:block truncate">
+                        {project.project_url}
+                      </span>
                     </a>
-                  )}
-                  <button className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border-color)] text-[var(--text-primary)] rounded-lg hover:bg-[var(--bg-secondary)] transition-colors">
-                    <Github size={18} />
-                    <span>View Code</span>
-                  </button>
+
+                    {/* Arrow Button - Fixed width */}
+                    <a
+                      href={project.project_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-10 sm:w-12 bg-[var(--bg-secondary)] border border-[var(--text-secondary)] rounded-md sm:rounded-lg text-[var(--text-secondary)] hover:text-[var(--brand-primary)] hover:bg-[var(--bg-primary)] transition-all duration-200"
+                    >
+                      <ArrowUpRight size={16} className="sm:w-5 sm:h-5" />
+                    </a>
+                  </div>
                 </div>
               </motion.div>
+            )}
 
-              {/* Project Meta */}
+            {/* 4. Main Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mb-8 sm:mb-12"
+            >
+              <div className="bg-[var(--bg-secondary)] rounded-[10px] p-4 sm:p-8 md:p-12 lg:p-[50px] overflow-hidden border-0">
+                <img
+                  src={project.image_url}
+                  alt={project.title}
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+            </motion.div>
+
+            {/* 5. Project Description */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="mb-8 sm:mb-12"
+            >
+              <div className="max-w-4xl">
+                <p className="text-sm sm:text-base md:text-lg text-[var(--text-secondary)] leading-relaxed mb-6">
+                  {project.full_description || project.short_description}
+                </p>
+
+                {project.challenge && (
+                  <div className="mb-6">
+                    <h3 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] mb-3">Challenge</h3>
+                    <p className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">{project.challenge}</p>
+                  </div>
+                )}
+
+                {project.solution && (
+                  <div className="mb-6">
+                    <h3 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] mb-3">Solution</h3>
+                    <p className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">{project.solution}</p>
+                  </div>
+                )}
+
+                {project.results && (
+                  <div className="mb-6">
+                    <h3 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] mb-3">Results</h3>
+                    <p className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">{project.results}</p>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+
+            {/* 6. Image Gallery - Dynamic 2 Column Grid */}
+            {galleryImages && galleryImages.length > 0 && (
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-[var(--bg-secondary)] rounded-2xl p-8"
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="mb-12 sm:mb-16"
               >
-                <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-6">Project Details</h3>
-                <div className="space-y-4">
-                  {project.completion_date && (
-                    <div className="flex items-center gap-3">
-                      <Calendar size={18} className="text-[var(--brand-primary)]" />
-                      <div>
-                        <p className="text-sm text-[var(--text-muted)]">Completed</p>
-                        <p className="text-[var(--text-primary)]">{new Date(project.completion_date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  {galleryImages.map((image, index) => (
+                    <div key={index} className="bg-[var(--bg-secondary)] rounded-[10px] p-4 sm:p-8 md:p-12 lg:p-[50px] overflow-hidden border-0">
+                      <img
+                        src={image}
+                        alt={`${project.title} screenshot ${index + 1}`}
+                        className="w-full h-auto rounded-lg"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {/* 7. Solutions & Results - 2 Column Grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="mb-12 sm:mb-16"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+                {/* Left Column - Solutions */}
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] mb-4 sm:mb-6">Key Features</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    {project.features.map((feature, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-[var(--brand-primary)] rounded-full mt-2 flex-shrink-0"></div>
+                        <p className="text-sm sm:text-base text-[var(--text-secondary)]">
+                          {feature}
+                        </p>
                       </div>
-                    </div>
-                  )}
-                  {project.duration && (
-                    <div className="flex items-center gap-3">
-                      <Tag size={18} className="text-[var(--brand-primary)]" />
-                      <div>
-                        <p className="text-sm text-[var(--text-muted)]">Duration</p>
-                        <p className="text-[var(--text-primary)]">{project.duration}</p>
-                      </div>
-                    </div>
-                  )}
-                  {project.team_size && (
-                    <div className="flex items-center gap-3">
-                      <User size={18} className="text-[var(--brand-primary)]" />
-                      <div>
-                        <p className="text-sm text-[var(--text-muted)]">Team Size</p>
-                        <p className="text-[var(--text-primary)]">{project.team_size} members</p>
-                      </div>
-                    </div>
-                  )}
-                  <div className="flex items-center gap-3">
-                    <Globe size={18} className="text-[var(--brand-primary)]" />
-                    <div>
-                      <p className="text-sm text-[var(--text-muted)]">Type</p>
-                      <p className="text-[var(--text-primary)]">{project.project_type.charAt(0).toUpperCase() + project.project_type.slice(1)} Project</p>
-                    </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Technologies */}
-                <div className="mt-8">
-                  <h4 className="text-sm font-medium text-[var(--text-muted)] mb-3">Technologies</h4>
-                  <div className="flex flex-wrap gap-2">
+                {/* Technologies Section */}
+                <div className="mt-8 lg:mt-0">
+                  <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] mb-4 sm:mb-6">Technologies</h2>
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
                     {project.technologies.map((tech, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-[var(--bg-primary)] text-[var(--text-secondary)] text-sm rounded-full border border-[var(--border-color)]"
+                        className="px-3 py-1 bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xs sm:text-sm rounded-full border border-[var(--text-secondary)]"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
 
-        {/* Project Gallery */}
-        <section className="pb-20">
-          <div className="max-w-6xl mx-auto px-6">
+
+              </div>
+            </motion.div>
+
+            {/* 8. Project Navigation */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="space-y-8"
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="border-t border-[var(--text-secondary)] pt-6 sm:pt-8"
             >
-              {project.screenshots && project.screenshots.map((screenshot, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="group"
-                >
-                  <img
-                    src={screenshot}
-                    alt={`${project.title} Screenshot ${index + 1}`}
-                    className="w-full h-auto rounded-2xl shadow-2xl group-hover:shadow-3xl transition-shadow duration-500"
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0">
+                {/* Previous Project */}
+                <div className="flex-1">
+                  {navigation.previous && (
+                    <Link
+                      to={`/project/${navigation.previous.slug}`}
+                      className="inline-flex items-center gap-2 sm:gap-3 text-[var(--text-secondary)] hover:text-[var(--brand-primary)] transition-colors group"
+                    >
+                      <ChevronLeft size={16} className="sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform" />
+                      <span className="text-xs sm:text-sm">
+                        {truncateTitle(navigation.previous.title, 25)}
+                      </span>
+                    </Link>
+                  )}
+                </div>
 
-        {/* Project Insights */}
-        <section className="py-20 bg-[var(--bg-secondary)]">
-          <div className="max-w-4xl mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="grid md:grid-cols-2 gap-12"
-            >
-              <div>
-                <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-6">Project Highlights</h2>
-                <ul className="space-y-3 text-[var(--text-secondary)]">
-                  <li className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 bg-[var(--brand-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Responsive design across all devices</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 bg-[var(--brand-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Optimized for performance and SEO</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 bg-[var(--brand-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Modern UI/UX principles applied</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 bg-[var(--brand-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Scalable architecture implementation</span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-6">Results & Impact</h2>
-                <p className="text-[var(--text-secondary)] leading-relaxed">
-                  The project delivered significant improvements in user engagement and business metrics.
-                  Performance benchmarks exceeded expectations with faster load times and improved conversion rates,
-                  resulting in a 40% increase in user satisfaction.
-                </p>
+                {/* Next Project */}
+                <div className="flex-1 text-left sm:text-right">
+                  {navigation.next && (
+                    <Link
+                      to={`/project/${navigation.next.slug}`}
+                      className="inline-flex items-center gap-2 sm:gap-3 text-[var(--text-secondary)] hover:text-[var(--brand-primary)] transition-colors group"
+                    >
+                      <span className="text-xs sm:text-sm">
+                        {truncateTitle(navigation.next.title, 25)}
+                      </span>
+                      <ChevronRight size={16} className="sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  )}
+                </div>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* Next Project CTA */}
-        <section className="py-20">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-4">
-                Ready to start your project?
-              </h2>
-              <p className="text-lg text-[var(--text-secondary)] mb-8">
-                Let's create something amazing together.
-              </p>
-              <Link
-                to="/#contact"
-                className="btn-primary px-8 py-4 text-lg hover:scale-105 transition-transform"
-              >
-                Get In Touch
-              </Link>
-            </motion.div>
-          </div>
-        </section>
+        {/* Contact Section */}
+        <ContactSection />
       </div>
-    </>
+    </PageTransition>
   );
 };
 

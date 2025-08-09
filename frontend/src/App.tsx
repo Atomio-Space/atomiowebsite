@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
@@ -76,13 +77,15 @@ export function App() {
     <div className="flex flex-col min-h-screen" style={{ fontFamily: 'Urbanist, sans-serif' }}>
       {!isStandalonePage && <Header theme={theme} toggleTheme={toggleTheme} />}
       <main className={isStandalonePage ? '' : 'flex-grow'}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/project/:slug" element={<ProjectDetailPage />} />
-          <Route path="/privacy" element={<PrivacyPolicyPage />} />
-          <Route path="/terms" element={<TermsOfServicePage />} />
-          <Route path="/startproject" element={<StartProjectPage />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/project/:slug" element={<ProjectDetailPage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms" element={<TermsOfServicePage />} />
+            <Route path="/startproject" element={<StartProjectPage />} />
+          </Routes>
+        </AnimatePresence>
       </main>
       {!isStandalonePage && <Footer theme={theme} toggleTheme={toggleTheme} />}
     </div>

@@ -25,23 +25,23 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center pt-20 pb-16 bg-[var(--bg-primary)]">
-      <div className="container-md text-center px-4">
+    <section id="hero" className="min-h-screen flex items-center justify-center pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20 bg-[var(--bg-primary)]">
+      <div className="container-md text-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="space-y-8"
+          className="space-y-6 sm:space-y-8 md:space-y-10"
         >
-          <motion.h1 variants={itemVariants} className="heading-xl max-w-4xl mx-auto text-[var(--text-primary)]">
+          <motion.h1 variants={itemVariants} className="heading-xl max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl mx-auto text-[var(--text-primary)] px-4">
             Software that makes your Work Easier
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="body-xl max-w-2xl mx-auto text-[var(--text-secondary)]">
+          <motion.p variants={itemVariants} className="body-xl max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto text-[var(--text-secondary)] px-4">
             We build and support the technology that drives your business forward.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center mt-6 sm:mt-8 md:mt-10 px-4">
             <button
               onClick={() => {
                 const contactSection = document.getElementById('contact');
@@ -51,7 +51,7 @@ const HeroSection = () => {
                   window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
               }}
-              className="btn-primary"
+              className="btn-primary w-full sm:w-auto"
             >
               Let's Work Together
             </button>
@@ -64,7 +64,7 @@ const HeroSection = () => {
                   window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
               }}
-              className="btn-secondary"
+              className="btn-secondary w-full sm:w-auto"
             >
               View Our Work
             </button>

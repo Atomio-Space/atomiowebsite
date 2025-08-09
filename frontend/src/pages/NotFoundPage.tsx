@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
-import { Home, ArrowLeft, AlertTriangle, ArrowRight } from 'lucide-react';
+import { AlertTriangle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PageTransition from '../components/ui/PageTransition';
 
 const NotFoundPage = () => {
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)]">
+    <PageTransition>
+      <div className="min-h-screen bg-[var(--bg-primary)]">
       {/* Header-like structure with logo and social icons */}
       <header className="flex items-center justify-between py-6 px-12">
         {/* Logo - Clickable */}
@@ -13,30 +15,18 @@ const NotFoundPage = () => {
         </Link>
 
         {/* Start a project button - Right Side */}
-        <div className="flex items-center space-x-1">
+        <div className="group flex items-center space-x-1">
           <Link
             to="/startproject"
-            className="group relative px-4 py-2 text-[var(--text-primary)] btn-custom-text border border-[var(--brand-primary)] hover:text-[var(--brand-primary)] transition-all duration-300 overflow-hidden"
+            className="relative px-4 py-3 text-white btn-custom-text bg-[var(--brand-primary)] group-hover:bg-[var(--brand-tertiary)] transition-all duration-300 overflow-hidden"
           >
-            {/* Animated glowing border */}
-            <div className="absolute inset-0 opacity-100 transition-opacity duration-300">
-              <div className="absolute inset-0 bg-gradient-to-r from-[var(--brand-primary)] via-[var(--brand-secondary)] to-[var(--brand-primary)] bg-[length:200%_100%] animate-[shimmer_2s_ease-in-out_infinite] p-[1px]">
-                <div className="w-full h-full bg-[var(--bg-primary)]"></div>
-              </div>
-            </div>
             <span className="relative z-10">START A PROJECT</span>
           </Link>
           <Link
             to="/startproject"
-            className="group relative px-2 py-2 border border-[var(--brand-primary)] hover:text-[var(--brand-primary)] transition-all duration-300 flex items-center justify-center overflow-hidden"
+            className="relative px-3 py-3 bg-[var(--brand-primary)] group-hover:bg-[var(--brand-tertiary)] transition-all duration-300 flex items-center justify-center overflow-hidden"
           >
-            {/* Animated glowing border */}
-            <div className="absolute inset-0 opacity-100 transition-opacity duration-300">
-              <div className="absolute inset-0 bg-gradient-to-r from-[var(--brand-primary)] via-[var(--brand-secondary)] to-[var(--brand-primary)] bg-[length:200%_100%] animate-[shimmer_2s_ease-in-out_infinite] p-[1px]">
-                <div className="w-full h-full bg-[var(--bg-primary)]"></div>
-              </div>
-            </div>
-            <ArrowRight className="w-4 h-4 text-[var(--text-secondary)] group-hover:text-[var(--brand-primary)] transition-colors relative z-10" />
+            <ArrowRight className="w-4 h-4 text-white transition-colors relative z-10" />
           </Link>
         </div>
       </header>
@@ -85,53 +75,53 @@ const NotFoundPage = () => {
           <h2 className="heading-lg text-[var(--text-primary)]">
             Oops! Page Not Found
           </h2>
-          <p className="body-lg text-[var(--text-secondary)] max-w-lg mx-auto">
-            The page you're looking for seems to have wandered off into the digital void. 
-            Don't worry, even the best explorers sometimes take a wrong turn.
-          </p>
         </motion.div>
 
 
 
-        {/* Action Buttons */}
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-        >
-          <Link
-            to="/"
-            className="btn-primary flex items-center space-x-2"
-          >
-            <Home className="w-4 h-4" />
-            <span>Back to Home</span>
-          </Link>
-          
-          <button
-            onClick={() => window.history.back()}
-            className="btn-secondary flex items-center space-x-2"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Go Back</span>
-          </button>
-        </motion.div>
 
-        {/* Fun Message */}
+
+
+
+        {/* Navigation Menu */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="space-y-2"
+          className="border-t border-[var(--text-muted)] border-opacity-20 pt-6"
         >
-          <p className="body-sm text-[var(--text-muted)] italic">
-            "Not all who wander are lost, but this page definitely is."
-          </p>
-          <div className="flex items-center justify-center space-x-2 text-[var(--text-secondary)]">
-            <div className="w-2 h-2 bg-[var(--brand-primary)] rounded-full"></div>
-            <span className="body-xs">Atomio Technologies</span>
-            <div className="w-2 h-2 bg-[var(--brand-secondary)] rounded-full"></div>
-          </div>
+          <nav className="flex flex-wrap justify-center items-center gap-6 sm:gap-8">
+            <Link
+              to="/#hero"
+              className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium text-sm lg:text-base"
+            >
+              Home
+            </Link>
+            <Link
+              to="/#about"
+              className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium text-sm lg:text-base"
+            >
+              About
+            </Link>
+            <Link
+              to="/#work"
+              className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium text-sm lg:text-base"
+            >
+              Work
+            </Link>
+            <Link
+              to="/#services"
+              className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium text-sm lg:text-base"
+            >
+              Services
+            </Link>
+            <Link
+              to="/#contact"
+              className="text-[var(--text-primary)] hover:text-[var(--brand-secondary)] transition-colors font-medium text-sm lg:text-base"
+            >
+              Contact
+            </Link>
+          </nav>
         </motion.div>
 
         {/* Contact Information */}
@@ -139,12 +129,12 @@ const NotFoundPage = () => {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="border-t border-[var(--text-muted)] border-opacity-20 pt-6"
+          className="pt-6"
         >
           <p className="body-sm text-[var(--text-secondary)]">
             Still can't find what you're looking for?{' '}
-            <a 
-              href="mailto:hello@atomio.tech" 
+            <a
+              href="mailto:hello@atomio.tech"
               className="text-[var(--brand-secondary)] hover:text-[var(--brand-primary)] transition-colors font-medium"
             >
               Contact our team
@@ -154,7 +144,8 @@ const NotFoundPage = () => {
         </motion.div>
       </div>
       </main>
-    </div>
+      </div>
+    </PageTransition>
   );
 };
 

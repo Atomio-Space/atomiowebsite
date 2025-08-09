@@ -17,7 +17,7 @@ const ContactSection = () => {
 
   return (
     <section className="section-padding bg-[var(--bg-primary)]" id="contact">
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
         <motion.div
           variants={sectionVariants}
           initial="hidden"
@@ -25,22 +25,22 @@ const ContactSection = () => {
           viewport={{ once: true }}
         >
           {/* Section Header */}
-          <div className="mb-16">
+          <div className="mb-12 sm:mb-16">
             {/* Let's talk Label */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="mb-8"
+              className="mb-6 sm:mb-8"
             >
-              <span className="text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider">
+              <span className="text-xs sm:text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider">
                 Let's talk
               </span>
             </motion.div>
 
             {/* Content Grid - Message and Contact Details */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
               {/* Left Column - Message with Button (7 columns) */}
               <div className="lg:col-span-7">
                 <motion.h2
@@ -48,10 +48,10 @@ const ContactSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-[42px] leading-[48px] font-normal text-[var(--text-primary)] text-left mb-8"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] leading-tight sm:leading-tight md:leading-tight lg:leading-[48px] font-normal text-[var(--text-primary)] text-left mb-6 sm:mb-8"
                   style={{ fontWeight: 400 }}
                 >
-                  Get in touch, and<br />let's get to work.
+                  Get in touch, and<br className="hidden sm:block" />let's get to work.
                 </motion.h2>
 
                 <motion.div
@@ -60,7 +60,7 @@ const ContactSection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <Link to="/startproject" className="btn-primary">
+                  <Link to="/startproject" className="btn-primary inline-block">
                     Start a project
                   </Link>
                 </motion.div>
@@ -72,16 +72,16 @@ const ContactSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="lg:col-span-4 lg:col-start-9 space-y-8"
+                className="lg:col-span-4 lg:col-start-9 space-y-6 sm:space-y-8 mt-8 lg:mt-0"
               >
                 {/* Email */}
                 <div>
-                  <h3 className="text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+                  <h3 className="text-xs sm:text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
                     Email
                   </h3>
                   <a
                     href="mailto:info@atomio.tech"
-                    className="text-lg text-[var(--text-primary)] hover:text-[var(--brand-primary)] transition-colors"
+                    className="text-base sm:text-lg text-[var(--text-primary)] hover:text-[var(--brand-primary)] transition-colors"
                   >
                     info@atomio.tech
                   </a>
@@ -89,12 +89,12 @@ const ContactSection = () => {
 
                 {/* Phone */}
                 <div>
-                  <h3 className="text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+                  <h3 className="text-xs sm:text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
                     Phone
                   </h3>
                   <a
                     href="tel:+254799456976"
-                    className="text-lg text-[var(--text-primary)] hover:text-[var(--brand-primary)] transition-colors"
+                    className="text-base sm:text-lg text-[var(--text-primary)] hover:text-[var(--brand-primary)] transition-colors"
                   >
                     +254 799 456 976
                   </a>
@@ -102,14 +102,14 @@ const ContactSection = () => {
 
                 {/* Social */}
                 <div>
-                  <h3 className="text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+                  <h3 className="text-xs sm:text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
                     Social
                   </h3>
                   <a
                     href="https://linkedin.com/company/atomio-tech"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-lg text-[var(--text-primary)] hover:text-[var(--brand-primary)] transition-colors"
+                    className="text-base sm:text-lg text-[var(--text-primary)] hover:text-[var(--brand-primary)] transition-colors"
                   >
                     LinkedIn
                   </a>

@@ -17,7 +17,7 @@ const ServicesSection = () => {
       number: '01',
       title: 'Custom Software Development',
       description: 'Transform your business operations with bespoke software solutions designed specifically for your unique challenges. We build scalable, secure applications that automate processes, improve efficiency, and give you a competitive edge in your market.',
-      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      image: '/images/services/software-service.webp',
       features: [
         'Enterprise Web Applications',
         'Mobile App Development',
@@ -32,7 +32,7 @@ const ServicesSection = () => {
       number: '02',
       title: 'Website Design & Development',
       description: 'Establish a powerful digital presence with professionally designed websites that convert visitors into customers. We create responsive, fast-loading sites optimized for search engines and user experience to drive business growth.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      image: '/images/services/website-service.webp',
       features: [
         'Responsive Web Design',
         'E-commerce Platforms',
@@ -47,7 +47,7 @@ const ServicesSection = () => {
       number: '03',
       title: 'AI Solutions',
       description: 'Harness the power of artificial intelligence to automate complex tasks, gain valuable insights from your data, and make smarter business decisions. Our AI solutions reduce costs while improving accuracy and operational efficiency.',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      image: '/images/services/ai-service.webp',
       features: [
         'Intelligent Process Automation',
         'Predictive Analytics',
@@ -112,10 +112,10 @@ const ServicesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-[42px] leading-[48px] font-normal text-[var(--text-primary)] text-left w-full"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] leading-tight sm:leading-tight md:leading-tight lg:leading-[48px] font-normal text-[var(--text-primary)] text-left w-full"
               style={{ fontWeight: 400 }}
             >
-              Comprehensive technology solutions designed to accelerate your business growth.
+              Tailored tech that powers your business growth while saving time and money.
             </motion.h2>
           </div>
 
@@ -125,34 +125,32 @@ const ServicesSection = () => {
               <motion.div
                 key={service.id}
                 variants={itemVariants}
-                className="border-t border-[var(--border-color)] py-16 first:border-t-0"
+                className="border-t border-[var(--border-color)] py-8 sm:py-12 md:py-16 first:border-t-0"
                 style={{ borderTopWidth: '1px' }}
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-start">
                   {/* Service Image */}
-                  <div className="lg:col-span-4">
+                  <div className="lg:col-span-4 order-2 lg:order-1">
                     <div className="relative">
                       <img
                         src={service.image}
                         alt={service.title}
-                        className="w-[300px] h-[240px] object-cover"
+                        className="w-full sm:w-[280px] md:w-[300px] h-[180px] sm:h-[220px] md:h-[240px] object-cover mx-auto lg:mx-0"
                       />
                     </div>
                   </div>
 
                   {/* Service Content - Expanded */}
-                  <div className="lg:col-span-5 space-y-4">
+                  <div className="lg:col-span-5 space-y-3 sm:space-y-4 order-1 lg:order-2">
                     {/* Number and Title */}
-                    <div className="flex items-center gap-4">
-                      <span className="text-[var(--text-muted)] text-sm font-medium tracking-wider">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                      <span className="text-[var(--text-muted)] text-xs sm:text-sm font-medium tracking-wider">
                         [{service.number}]
                       </span>
                       <h3
-                        className="text-[var(--text-primary)] font-normal"
+                        className="text-[var(--text-primary)] font-normal text-lg sm:text-xl md:text-[23px] leading-tight sm:leading-relaxed"
                         style={{
-                          fontWeight: 400,
-                          fontSize: '23px',
-                          lineHeight: '28px'
+                          fontWeight: 400
                         }}
                       >
                         {service.title}
@@ -161,11 +159,9 @@ const ServicesSection = () => {
 
                     {/* Description */}
                     <p
-                      className="text-[var(--text-secondary)] font-normal"
+                      className="text-[var(--text-secondary)] font-normal text-sm sm:text-base leading-relaxed"
                       style={{
-                        fontWeight: 400,
-                        fontSize: '16px',
-                        lineHeight: '16px'
+                        fontWeight: 400
                       }}
                     >
                       {service.description}
@@ -173,16 +169,14 @@ const ServicesSection = () => {
                   </div>
 
                   {/* Features List - Single Column */}
-                  <div className="lg:col-span-3">
-                    <div className="space-y-2">
+                  <div className="lg:col-span-3 order-3">
+                    <div className="space-y-1 sm:space-y-2 mt-4 lg:mt-0">
                       {service.features.map((feature, featureIndex) => (
                         <div
                           key={featureIndex}
-                          className="text-[var(--text-secondary)] font-normal"
+                          className="text-[var(--text-secondary)] font-normal text-xs sm:text-sm leading-relaxed"
                           style={{
-                            fontWeight: 400,
-                            fontSize: '12px',
-                            lineHeight: '17px'
+                            fontWeight: 400
                           }}
                         >
                           • {feature}

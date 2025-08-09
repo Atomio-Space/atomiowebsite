@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import PageTransition from '../components/ui/PageTransition';
 
 const StartProjectPage = () => {
   const [formData, setFormData] = useState({
@@ -92,8 +92,9 @@ const StartProjectPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] py-16">
-      <div className="max-w-4xl mx-auto px-6">
+    <PageTransition>
+      <div className="min-h-screen bg-[var(--bg-primary)] pt-24 pb-16">
+        <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <div className="text-left mb-16">
           <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">Get In Touch</h1>
@@ -246,37 +247,26 @@ const StartProjectPage = () => {
 
             {/* Submit Button */}
             <div className="pt-6">
-              <div className="flex items-center space-x-1">
+              <div className="group flex items-center space-x-1">
                 <button
                   type="submit"
-                  className="group relative px-4 py-2 text-[var(--text-primary)] btn-custom-text border border-[var(--brand-primary)] hover:text-[var(--brand-primary)] transition-all duration-300 overflow-hidden"
+                  className="relative px-4 py-3 text-white btn-custom-text bg-[var(--brand-primary)] group-hover:bg-[var(--brand-tertiary)] transition-all duration-300 overflow-hidden"
                 >
-                  {/* Animated glowing border */}
-                  <div className="absolute inset-0 opacity-100 transition-opacity duration-300">
-                    <div className="absolute inset-0 bg-gradient-to-r from-[var(--brand-primary)] via-[var(--brand-secondary)] to-[var(--brand-primary)] bg-[length:200%_100%] animate-[shimmer_2s_ease-in-out_infinite] p-[1px]">
-                      <div className="w-full h-full bg-[var(--bg-primary)]"></div>
-                    </div>
-                  </div>
                   <span className="relative z-10">SEND INQUIRY</span>
                 </button>
                 <button
                   type="submit"
-                  className="group relative px-2 py-2 border border-[var(--brand-primary)] hover:text-[var(--brand-primary)] transition-all duration-300 flex items-center justify-center overflow-hidden"
+                  className="relative px-3 py-3 bg-[var(--brand-primary)] group-hover:bg-[var(--brand-tertiary)] transition-all duration-300 flex items-center justify-center overflow-hidden"
                 >
-                  {/* Animated glowing border */}
-                  <div className="absolute inset-0 opacity-100 transition-opacity duration-300">
-                    <div className="absolute inset-0 bg-gradient-to-r from-[var(--brand-primary)] via-[var(--brand-secondary)] to-[var(--brand-primary)] bg-[length:200%_100%] animate-[shimmer_2s_ease-in-out_infinite] p-[1px]">
-                      <div className="w-full h-full bg-[var(--bg-primary)]"></div>
-                    </div>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-[var(--text-secondary)] group-hover:text-[var(--brand-primary)] transition-colors relative z-10" />
+                  <ArrowRight className="w-4 h-4 text-white transition-colors relative z-10" />
                 </button>
               </div>
             </div>
           </form>
         </div>
+        </div>
       </div>
-    </div>
+    </PageTransition>
   );
 };
 
