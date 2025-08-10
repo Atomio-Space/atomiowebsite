@@ -25,7 +25,7 @@ const PageTransition = ({ children, className = '' }: PageTransitionProps) => {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smooth feel
+        ease: [0.25, 0.46, 0.45, 0.94] as any, // Custom easing for smooth feel
         when: "beforeChildren",
         staggerChildren: 0.1,
       },
@@ -35,7 +35,7 @@ const PageTransition = ({ children, className = '' }: PageTransitionProps) => {
       y: -20,
       transition: {
         duration: 0.3,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.25, 0.46, 0.45, 0.94] as any,
       },
     },
   };
