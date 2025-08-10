@@ -2,7 +2,7 @@
 export const projects = [
   {
     id: "1",
-    title: "Laxmi Group Corporate Website",
+    title: "Laxmi Group Website",
     slug: "laxmi-group-website",
     client_name: "Laxmi Group Kenya",
     project_type: "client",
@@ -25,7 +25,7 @@ export const projects = [
   },
   {
     id: "2",
-    title: "Amara Nursing Care Platform",
+    title: "Amara Nursing LLC Website",
     slug: "amara-nursing-website",
     client_name: "Amara Nursing LLC",
     project_type: "client",
@@ -71,7 +71,7 @@ export const projects = [
   },
   {
     id: "4",
-    title: "Savana Pulp Sustainability Platform",
+    title: "Savana Pulp Website",
     slug: "savana-pulp-website",
     client_name: "Savana Pulp",
     project_type: "client",

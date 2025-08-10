@@ -21,6 +21,9 @@ const StartProjectPage = () => {
     timeline: false
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+
   const projectTypes = [
     'Software Development',
     'Website Design',
@@ -46,8 +49,28 @@ const StartProjectPage = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Helper function to get browser info
+  const getBrowserInfo = () => {
+    return {
+      browserName: navigator.userAgent.includes('Chrome') ? 'Chrome' :
+                   navigator.userAgent.includes('Firefox') ? 'Firefox' :
+                   navigator.userAgent.includes('Safari') ? 'Safari' : 'Unknown',
+      browserVersion: 'Unknown',
+      osName: navigator.platform || 'Unknown',
+      deviceType: /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+      screen: {
+        width: screen.width,
+        height: screen.height
+      },
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      language: navigator.language,
+      referrer: document.referrer || 'Direct'
+    };
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitMessage('');
 
     // Validate required fields
     const newErrors = {
@@ -64,31 +87,54 @@ const StartProjectPage = () => {
       return;
     }
 
-    // Format the submission data
-    const submissionData = {
-      timestamp: new Date().toISOString(),
-      contactDetails: {
+    setIsSubmitting(true);
+
+    try {
+      // Prepare submission data for Netlify function
+      const submissionData = {
         firstName: formData.firstName.trim(),
-        lastName: formData.lastName.trim() || null,
+        lastName: formData.lastName.trim(),
         email: formData.email.trim(),
-        company: formData.company.trim() || null
-      },
-      projectRequirements: {
-        types: formData.projectTypes.length > 0 ? formData.projectTypes : null,
-        budget: formData.budget || null,
-        timeline: formData.timeline || null
-      },
-      source: 'Start Project Page'
-    };
+        company: formData.company.trim(),
+        projectTypes: formData.projectTypes,
+        budget: formData.budget,
+        timeline: formData.timeline,
+        browserInfo: getBrowserInfo(),
+        source: 'Start Project Page'
+      };
 
-    // Output well-formatted JSON
-    console.log('=== PROJECT INQUIRY SUBMISSION ===');
-    console.log(JSON.stringify(submissionData, null, 2));
+      // Submit to Netlify function
+      const response = await fetch('/.netlify/functions/start-project', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+      });
 
-    // Here you would typically send this to your backend API
-    // Example: await fetch('/api/inquiries', { method: 'POST', body: JSON.stringify(submissionData) })
+      const result = await response.json();
 
-    alert('Inquiry submitted successfully! Check the console for the formatted data.');
+      if (response.ok && result.success) {
+        setSubmitMessage('Thank you for your inquiry! We will respond within 24 hours.');
+        // Reset form
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          company: '',
+          projectTypes: [],
+          budget: '',
+          timeline: ''
+        });
+      } else {
+        setSubmitMessage(result.error || 'An error occurred. Please try again.');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitMessage('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -245,18 +291,41 @@ const StartProjectPage = () => {
               )}
             </div>
 
+            {/* Submit Message */}
+            {submitMessage && (
+              <div className={`p-4 rounded-lg mb-6 ${
+                submitMessage.includes('Thank you')
+                  ? 'bg-green-50 text-green-800 border border-green-200'
+                  : 'bg-red-50 text-red-800 border border-red-200'
+              }`}>
+                {submitMessage}
+              </div>
+            )}
+
             {/* Submit Button */}
             <div className="pt-6">
               <div className="group flex items-center space-x-1">
                 <button
                   type="submit"
-                  className="relative px-4 py-3 text-white btn-custom-text bg-[var(--brand-primary)] group-hover:bg-[var(--brand-tertiary)] transition-all duration-300 overflow-hidden"
+                  disabled={isSubmitting}
+                  className={`relative px-4 py-3 text-white btn-custom-text transition-all duration-300 overflow-hidden ${
+                    isSubmitting
+                      ? 'bg-gray-400 cursor-not-allowed'
+                      : 'bg-[var(--brand-primary)] group-hover:bg-[var(--brand-tertiary)]'
+                  }`}
                 >
-                  <span className="relative z-10">SEND INQUIRY</span>
+                  <span className="relative z-10">
+                    {isSubmitting ? 'SENDING...' : 'SEND INQUIRY'}
+                  </span>
                 </button>
                 <button
                   type="submit"
-                  className="relative px-3 py-3 bg-[var(--brand-primary)] group-hover:bg-[var(--brand-tertiary)] transition-all duration-300 flex items-center justify-center overflow-hidden"
+                  disabled={isSubmitting}
+                  className={`relative px-3 py-3 transition-all duration-300 flex items-center justify-center overflow-hidden ${
+                    isSubmitting
+                      ? 'bg-gray-400 cursor-not-allowed'
+                      : 'bg-[var(--brand-primary)] group-hover:bg-[var(--brand-tertiary)]'
+                  }`}
                 >
                   <ArrowRight className="w-4 h-4 text-white transition-colors relative z-10" />
                 </button>

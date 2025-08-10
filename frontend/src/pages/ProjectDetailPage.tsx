@@ -241,9 +241,12 @@ const ProjectDetailPage = () => {
               className="mb-8 sm:mb-12"
             >
               <div className="max-w-4xl">
-                <p className="text-sm sm:text-base md:text-lg text-[var(--text-secondary)] leading-relaxed mb-6">
-                  {project.full_description || project.short_description}
-                </p>
+                <div className="mb-6">
+                  <h3 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] mb-3">Description</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
+                    {project.full_description || project.short_description}
+                  </p>
+                </div>
 
                 {project.challenge && (
                   <div className="mb-6">

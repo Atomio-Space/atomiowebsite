@@ -8,7 +8,7 @@
   # Base directory for the build (this is important since we're in the frontend folder)
   base = "frontend"
 
-  # Functions directory (if you plan to add serverless functions later)
+  # Functions directory for serverless functions
   functions = "netlify/functions"
 
 [build.environment]
