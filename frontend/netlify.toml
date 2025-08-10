@@ -13,10 +13,10 @@
 
 [build.environment]
   # Node.js version
-  NODE_VERSION = "18"
+  NODE_VERSION = "22"
 
   # NPM version (optional)
-  NPM_VERSION = "9"
+  NPM_VERSION = "10"
 
 # Redirect rules for Single Page Application
 # Since we're now using a one-page design, we only need basic redirects
