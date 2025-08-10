@@ -114,8 +114,7 @@ export const projects = [
     image_url: "/images/projects/seamo/1.png",
     gallery_images: [
       "/images/projects/seamo/1.png",
-      "/images/projects/seamo/2.png",
-      "/images/projects/seamo/3.png"
+      "/images/projects/seamo/2.png"
     ],
     technologies: ["React", "Node.js", "MongoDB", "AWS", "AI/ML APIs", "D3.js", "WebRTC"],
     features: ["Intelligent project management", "AI-assisted image analysis", "Oceanographic data collection", "Global collaboration tools", "Research workflows", "Data visualization"],
