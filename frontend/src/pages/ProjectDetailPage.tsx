@@ -57,9 +57,9 @@ const ProjectDetailPage = () => {
         if (foundProject) {
           setProject(foundProject);
 
-          // Dynamically load available gallery images
+          // Load gallery images from project data (instant)
           if (slug) {
-            const dynamicGalleryImages = await getProjectGalleryImages(slug);
+            const dynamicGalleryImages = getProjectGalleryImages(slug);
             setGalleryImages(dynamicGalleryImages);
           }
 

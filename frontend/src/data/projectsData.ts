@@ -14,7 +14,10 @@ export const projects = [
     results: "Enhanced online presence leading to increased client inquiries and improved brand credibility in the construction industry.",
     image_url: "/images/projects/laxmi-website/1.png",
     gallery_images: [
-      "/images/projects/laxmi-website/1.png"
+      "/images/projects/laxmi-website/1.png",
+      "/images/projects/laxmi-website/2.png",
+      "/images/projects/laxmi-website/3.png",
+      "/images/projects/laxmi-website/4.png"
     ],
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "CMS Integration"],
     features: ["Service portfolio showcase", "Project gallery", "Safety standards documentation", "Contact management", "Responsive design", "SEO optimization"],
@@ -37,7 +40,8 @@ export const projects = [
     results: "Improved online visibility and trust-building with potential clients, leading to increased inquiries for both in-home nursing services and adult family home placement.",
     image_url: "/images/projects/amara-website/1.png",
     gallery_images: [
-      "/images/projects/amara-website/1.png"
+      "/images/projects/amara-website/1.png",
+      "/images/projects/amara-website/2.png"
     ],
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "CMS Integration", "Contact Forms"],
     features: ["Service descriptions", "Care philosophy showcase", "Contact management", "Responsive design", "SEO optimization", "Accessibility compliance"],
@@ -60,7 +64,8 @@ export const projects = [
     results: "Enhanced professional credibility and improved lead generation for safety consulting services across various industries in Kenya.",
     image_url: "/images/projects/safeharbor-website/1.png",
     gallery_images: [
-      "/images/projects/safeharbor-website/1.png"
+      "/images/projects/safeharbor-website/1.png",
+      "/images/projects/safeharbor-website/2.png"
     ],
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "CMS Integration", "SEO Tools"],
     features: ["Service portfolio", "Case studies showcase", "OSHA compliance information", "Contact management", "Resource library", "Professional design"],
@@ -86,8 +91,7 @@ export const projects = [
       "/images/projects/savana-website/1.png",
       "/images/projects/savana-website/2.png",
       "/images/projects/savana-website/3.png",
-      "/images/projects/savana-website/4.png",
-      "/images/projects/savana-website/5.png"
+      "/images/projects/savana-website/4.png"
     ],
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Blog CMS", "Analytics"],
     features: ["Environmental impact showcase", "Product information", "Blog platform", "Contact forms", "Sustainability metrics", "Responsive design"],
@@ -109,7 +113,9 @@ export const projects = [
     results: "Streamlined marine research workflows, improved data analysis efficiency through AI assistance, and enhanced global collaboration among marine research institutions.",
     image_url: "/images/projects/seamo/1.png",
     gallery_images: [
-      "/images/projects/seamo/1.png"
+      "/images/projects/seamo/1.png",
+      "/images/projects/seamo/2.png",
+      "/images/projects/seamo/3.png"
     ],
     technologies: ["React", "Node.js", "MongoDB", "AWS", "AI/ML APIs", "D3.js", "WebRTC"],
     features: ["Intelligent project management", "AI-assisted image analysis", "Oceanographic data collection", "Global collaboration tools", "Research workflows", "Data visualization"],
@@ -131,7 +137,8 @@ export const projects = [
     results: "Enabled seamless global communication for businesses, improved translation accuracy by leveraging AI context awareness, and provided scalable translation solutions for various industries.",
     image_url: "/images/projects/sema/1.png",
     gallery_images: [
-      "/images/projects/sema/1.png"
+      "/images/projects/sema/1.png",
+      "/images/projects/sema/2.png"
     ],
     technologies: ["Python", "TensorFlow", "React", "FastAPI", "Docker", "ASR Technology", "NLP Models"],
     features: ["Real-time translation", "Automatic speech recognition", "Context awareness", "API integration", "Custom vocabulary", "Multi-language support"],
@@ -142,69 +149,36 @@ export const projects = [
   }
 ];
 
-// Helper function to check if an image exists
-function checkImageExists(url: string): Promise<boolean> {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.onload = () => resolve(true);
-    img.onerror = () => resolve(false);
-    img.src = url;
-  });
+// Fast utility function to get project gallery images from pre-defined data
+export function getProjectGalleryImages(projectSlug: string): string[] {
+  const project = projects.find(p => p.slug === projectSlug);
+  return project?.gallery_images || [];
 }
 
-// Utility function to dynamically load available images for a project
-export async function getProjectGalleryImages(projectSlug: string): Promise<string[]> {
-  // Map project slugs to their actual folder names
-  let folderName = '';
-  if (projectSlug === 'laxmi-group-website') folderName = 'laxmi-website';
-  else if (projectSlug === 'amara-nursing-website') folderName = 'amara-website';
-  else if (projectSlug === 'safeharbor-consulting-website') folderName = 'safeharbor-website';
-  else if (projectSlug === 'savana-pulp-website') folderName = 'savana-website';
-  else if (projectSlug === 'seamo-research-platform') folderName = 'seamo';
-  else if (projectSlug === 'sema-ai-platform') folderName = 'sema';
-
-  const images: string[] = [];
-  const maxImages = 10; // Check up to 10 images
-
-  // Check images sequentially and stop at the first missing one
-  for (let i = 1; i <= maxImages; i++) {
-    const imageUrl = `/images/projects/${folderName}/${i}.png`;
-    const exists = await checkImageExists(imageUrl);
-
-    if (exists) {
-      images.push(imageUrl);
-    } else {
-      break; // Stop checking once we hit a missing image
-    }
-  }
-
-  return images;
-}
-
-// Data fetching functions that simulate API calls
+// Optimized data fetching functions (instant loading)
 export async function getProjects() {
-  // Simulate network delay
-  await new Promise(resolve => setTimeout(resolve, 100));
+  // Minimal delay for smooth UX (reduced from 100ms to 10ms)
+  await new Promise(resolve => setTimeout(resolve, 10));
   return projects.filter(project => project.is_public && project.status === 'completed');
 }
 
 export async function getFeaturedProjects() {
-  await new Promise(resolve => setTimeout(resolve, 100));
+  await new Promise(resolve => setTimeout(resolve, 10));
   return projects.filter(project => project.is_featured && project.is_public && project.status === 'completed');
 }
 
 export async function getProjectBySlug(slug: string) {
-  await new Promise(resolve => setTimeout(resolve, 100));
+  await new Promise(resolve => setTimeout(resolve, 10));
   return projects.find(project => project.slug === slug && project.is_public && project.status === 'completed');
 }
 
 export async function getProjectsByType(type: string) {
-  await new Promise(resolve => setTimeout(resolve, 100));
-  
+  await new Promise(resolve => setTimeout(resolve, 10));
+
   if (!type || type === 'all') {
     return projects.filter(p => p.is_featured && p.is_public && p.status === 'completed');
   }
-  
+
   return projects
     .filter(p => p.project_type === type && p.is_featured && p.is_public && p.status === 'completed');
 }

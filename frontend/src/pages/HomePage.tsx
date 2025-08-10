@@ -9,21 +9,27 @@ import ContactSection from '../components/sections/ContactSection';
 
 const HomePage = () => {
   useEffect(() => {
-    // Set meta tags for SEO
-    document.title = 'Atomio - Enterprise Technology Solutions';
+    // Set enhanced meta tags for SEO with Kenya focus
+    document.title = 'Atomio Technologies - Leading Software Development Company in Kenya | Custom Software, Web Design, AI Solutions';
 
-    // Update meta description
+    // Update meta description with Kenya-focused keywords
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Atomio provides cutting-edge enterprise technology solutions including custom software development, AI & LLM solutions, cloud architecture, and digital transformation services.');
+      metaDescription.setAttribute('content', 'Atomio Technologies - Leading software development company in Kenya. Expert custom software development, website design, AI solutions, mobile apps, and digital transformation services across Kenya and East Africa.');
     } else {
       const newMetaDescription = document.createElement('meta');
       newMetaDescription.name = 'description';
-      newMetaDescription.content = 'Atomio provides cutting-edge enterprise technology solutions including custom software development, AI & LLM solutions, cloud architecture, and digital transformation services.';
+      newMetaDescription.content = 'Atomio Technologies - Leading software development company in Kenya. Expert custom software development, website design, AI solutions, mobile apps, and digital transformation services across Kenya and East Africa.';
       document.head.appendChild(newMetaDescription);
     }
 
-    // Update OG tags
+    // Update keywords meta tag
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', 'Atomio, Atomio Tech, Atomio Technologies, software development Kenya, web development Kenya, AI solutions Kenya, custom software Kenya, tech company Kenya, digital transformation Kenya, mobile app development Kenya, e-commerce development Kenya, Nairobi software company');
+    }
+
+    // Update OG tags with Kenya focus
     const updateOrCreateMetaTag = (property: string, content: string) => {
       const existingTag = document.querySelector(`meta[property="${property}"]`);
       if (existingTag) {
@@ -36,8 +42,8 @@ const HomePage = () => {
       }
     };
 
-    updateOrCreateMetaTag('og:title', 'Atomio - Enterprise Technology Solutions');
-    updateOrCreateMetaTag('og:description', 'Cutting-edge enterprise software development, AI solutions, cloud architecture, and digital transformation services.');
+    updateOrCreateMetaTag('og:title', 'Atomio Technologies - Leading Software Development Company in Kenya');
+    updateOrCreateMetaTag('og:description', 'Expert software development, web design, AI solutions, and digital transformation services in Kenya. Transform your business with Atomio Technologies.');
     updateOrCreateMetaTag('og:type', 'website');
     updateOrCreateMetaTag('og:url', 'https://atomio.tech');
 
