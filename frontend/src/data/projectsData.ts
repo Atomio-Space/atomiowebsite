@@ -65,7 +65,9 @@ export const projects = [
     image_url: "/images/projects/safeharbor-website/1.png",
     gallery_images: [
       "/images/projects/safeharbor-website/1.png",
-      "/images/projects/safeharbor-website/2.png"
+      "/images/projects/safeharbor-website/2.png",
+      "/images/projects/safeharbor-website/3.png",
+      "/images/projects/safeharbor-website/4.png"
     ],
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "CMS Integration", "SEO Tools"],
     features: ["Service portfolio", "Case studies showcase", "OSHA compliance information", "Contact management", "Resource library", "Professional design"],
@@ -76,6 +78,31 @@ export const projects = [
   },
   {
     id: "4",
+    title: "Seamo Ocean Intelligence Platform",
+    slug: "seamo-research-platform",
+    project_type: "product",
+    category: "web_app",
+    short_description: "Revolutionary ocean intelligence platform that transforms marine research with intelligent project management, AI-assisted image analysis, and global collaboration tools.",
+    full_description: "Seamo is our flagship ocean intelligence platform designed specifically for marine research organizations. It combines advanced project management capabilities with AI-powered image analysis, oceanographic data collection tools, and global collaboration features. The platform addresses the unique challenges faced by marine researchers in managing complex research projects, analyzing underwater imagery, and collaborating across international research teams.",
+    challenge: "Marine research teams lacked specialized tools that could handle the unique requirements of oceanographic research, including underwater image analysis, complex data collection workflows, and international collaboration needs.",
+    solution: "We developed a comprehensive platform that integrates intelligent project management with AI-assisted image analysis capabilities, allowing researchers to efficiently manage projects while leveraging artificial intelligence to analyze marine imagery and data.",
+    results: "Streamlined marine research workflows, improved data analysis efficiency through AI assistance, and enhanced global collaboration among marine research institutions.",
+    image_url: "/images/projects/seamo/1.png",
+    gallery_images: [
+      "/images/projects/seamo/1.png",
+      "/images/projects/seamo/2.png",
+      "/images/projects/seamo/3.png",
+      "/images/projects/seamo/4.png"
+    ],
+    technologies: ["React", "Node.js", "MongoDB", "AWS", "AI/ML APIs", "D3.js", "WebRTC"],
+    features: ["Intelligent project management", "AI-assisted image analysis", "Oceanographic data collection", "Global collaboration tools", "Research workflows", "Data visualization"],
+    project_url: "https://seamo.earth/",
+    is_featured: true,
+    is_public: true,
+    status: "completed"
+  },
+  {
+    id: "5",
     title: "Savana Pulp Website",
     slug: "savana-pulp-website",
     client_name: "Savana Pulp",
@@ -101,29 +128,6 @@ export const projects = [
     status: "completed"
   },
   {
-    id: "5",
-    title: "Seamo Ocean Intelligence Platform",
-    slug: "seamo-research-platform",
-    project_type: "product",
-    category: "web_app",
-    short_description: "Revolutionary ocean intelligence platform that transforms marine research with intelligent project management, AI-assisted image analysis, and global collaboration tools.",
-    full_description: "Seamo is our flagship ocean intelligence platform designed specifically for marine research organizations. It combines advanced project management capabilities with AI-powered image analysis, oceanographic data collection tools, and global collaboration features. The platform addresses the unique challenges faced by marine researchers in managing complex research projects, analyzing underwater imagery, and collaborating across international research teams.",
-    challenge: "Marine research teams lacked specialized tools that could handle the unique requirements of oceanographic research, including underwater image analysis, complex data collection workflows, and international collaboration needs.",
-    solution: "We developed a comprehensive platform that integrates intelligent project management with AI-assisted image analysis capabilities, allowing researchers to efficiently manage projects while leveraging artificial intelligence to analyze marine imagery and data.",
-    results: "Streamlined marine research workflows, improved data analysis efficiency through AI assistance, and enhanced global collaboration among marine research institutions.",
-    image_url: "/images/projects/seamo/1.png",
-    gallery_images: [
-      "/images/projects/seamo/1.png",
-      "/images/projects/seamo/2.png"
-    ],
-    technologies: ["React", "Node.js", "MongoDB", "AWS", "AI/ML APIs", "D3.js", "WebRTC"],
-    features: ["Intelligent project management", "AI-assisted image analysis", "Oceanographic data collection", "Global collaboration tools", "Research workflows", "Data visualization"],
-    project_url: "https://seamo.earth/",
-    is_featured: true,
-    is_public: true,
-    status: "completed"
-  },
-  {
     id: "6",
     title: "Sema AI Translation Platform",
     slug: "sema-ai-platform",
@@ -137,7 +141,9 @@ export const projects = [
     image_url: "/images/projects/sema/1.png",
     gallery_images: [
       "/images/projects/sema/1.png",
-      "/images/projects/sema/2.png"
+      "/images/projects/sema/2.png",
+      "/images/projects/sema/3.png",
+      "/images/projects/sema/4.png"
     ],
     technologies: ["Python", "TensorFlow", "React", "FastAPI", "Docker", "ASR Technology", "NLP Models"],
     features: ["Real-time translation", "Automatic speech recognition", "Context awareness", "API integration", "Custom vocabulary", "Multi-language support"],

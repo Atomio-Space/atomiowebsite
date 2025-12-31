@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PageTransition from '../components/ui/PageTransition';
 import HeroSection from '../components/sections/HeroSection';
 import AboutSection from '../components/sections/AboutSection';
@@ -90,11 +91,15 @@ const HomePage = () => {
   }, []);
 
   // Handle navigation from other pages to specific sections
+  const location = useLocation();
+
   useEffect(() => {
-    const scrollToSection = sessionStorage.getItem('scrollToSection');
+    // Check if there's a section to scroll to from navigation state
+    const scrollToSection = location.state?.scrollToSection;
+
     if (scrollToSection) {
-      // Clear the stored section
-      sessionStorage.removeItem('scrollToSection');
+      // Clear the state to prevent scrolling on page refresh
+      window.history.replaceState({}, document.title);
 
       // Wait for the page to fully render and animations to complete
       const timer = setTimeout(() => {
@@ -112,7 +117,7 @@ const HomePage = () => {
 
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [location]);
 
   return (
     <PageTransition>

@@ -8,7 +8,7 @@ interface HeaderProps {
   toggleTheme?: () => void;
 }
 
-const Header = ({}: HeaderProps) => {
+const Header = ({ }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -48,10 +48,8 @@ const Header = ({}: HeaderProps) => {
         });
       }
     } else {
-      // If we're on another page, navigate to home and store the target section
-      // We'll use sessionStorage to remember which section to scroll to
-      sessionStorage.setItem('scrollToSection', targetId);
-      navigate('/');
+      // If we're on another page, navigate to home and pass the target section in state
+      navigate('/', { state: { scrollToSection: targetId } });
     }
 
     setMobileMenuOpen(false);
@@ -59,11 +57,10 @@ const Header = ({}: HeaderProps) => {
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 header-glass ${
-        isScrolled
+      className={`fixed w-full z-50 transition-all duration-300 header-glass ${isScrolled
           ? 'header-scrolled py-2 sm:py-2 md:py-3'
           : 'header-transparent py-3 sm:py-4 md:py-5'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex items-center justify-between">
         {/* Logo */}

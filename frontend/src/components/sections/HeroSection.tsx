@@ -34,7 +34,7 @@ const HeroSection = () => {
           className="space-y-6 sm:space-y-8 md:space-y-10"
         >
           <motion.h1 variants={itemVariants} className="heading-xl max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl mx-auto text-[var(--text-primary)] px-4">
-            Software that makes your Work Easier
+            Software That Makes Your Work Easier
           </motion.h1>
 
           <motion.p variants={itemVariants} className="body-xl max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto text-[var(--text-secondary)] px-4">
