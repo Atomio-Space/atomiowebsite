@@ -13,7 +13,7 @@ interface Project {
   category: string;
   short_description: string;
   image_url: string;
-  technologies: string[];
+  technologies?: string[];
 }
 
 type FilterType = 'all' | 'client' | 'product';
@@ -129,11 +129,10 @@ const ProjectsSection = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveFilter(tab.id)}
-                  className={`px-4 sm:px-6 py-2 sm:py-3 rounded-[10px] font-semibold text-sm sm:text-base transition-all duration-200 ${
-                    activeFilter === tab.id
+                  className={`px-4 sm:px-6 py-2 sm:py-3 rounded-[10px] font-semibold text-sm sm:text-base transition-all duration-200 ${activeFilter === tab.id
                       ? 'work-tab-active'
                       : 'text-[var(--text-secondary)] hover:work-tab-hover'
-                  }`}
+                    }`}
                 >
                   {tab.label}
                 </button>

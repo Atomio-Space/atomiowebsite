@@ -21,8 +21,8 @@ interface ProjectDetail {
   results?: string;
   image_url: string;
   gallery_images?: string[];
-  technologies: string[];
-  features: string[];
+  technologies?: string[];
+  features?: string[];
   project_url?: string;
   is_featured: boolean;
   is_public: boolean;
@@ -152,7 +152,7 @@ const ProjectDetailPage = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-6 sm:mb-8"
             >
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <div>
                   <div className="text-xs sm:text-sm font-medium text-[var(--text-secondary)] mb-1">Client</div>
                   <div className="text-sm sm:text-base text-[var(--text-primary)] font-medium">{project.client_name || 'Atomio Product'}</div>
@@ -302,34 +302,38 @@ const ProjectDetailPage = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
                 {/* Left Column - Solutions */}
-                <div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] mb-4 sm:mb-6">Key Features</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    {project.features.map((feature, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-[var(--brand-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-sm sm:text-base text-[var(--text-secondary)]">
-                          {feature}
-                        </p>
-                      </div>
-                    ))}
+                {project.features && project.features.length > 0 && (
+                  <div>
+                    <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] mb-4 sm:mb-6">Key Features</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                      {project.features.map((feature, index) => (
+                        <div key={index} className="flex items-start gap-3">
+                          <div className="w-2 h-2 bg-[var(--brand-primary)] rounded-full mt-2 flex-shrink-0"></div>
+                          <p className="text-sm sm:text-base text-[var(--text-secondary)]">
+                            {feature}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Technologies Section */}
-                <div className="mt-8 lg:mt-0">
-                  <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] mb-4 sm:mb-6">Technologies</h2>
-                  <div className="flex flex-wrap gap-2 sm:gap-3">
-                    {project.technologies.map((tech, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xs sm:text-sm rounded-full border border-[var(--text-secondary)]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                {project.technologies && project.technologies.length > 0 && (
+                  <div className="mt-8 lg:mt-0">
+                    <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] mb-4 sm:mb-6">Technologies</h2>
+                    <div className="flex flex-wrap gap-2 sm:gap-3">
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xs sm:text-sm rounded-full border border-[var(--text-secondary)]"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
 
               </div>
@@ -342,7 +346,7 @@ const ProjectDetailPage = () => {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="border-t border-[var(--text-secondary)] pt-6 sm:pt-8"
             >
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0">
+              <div className="flex flex-row justify-between items-center gap-4">
                 {/* Previous Project */}
                 <div className="flex-1">
                   {navigation.previous && (
@@ -359,7 +363,7 @@ const ProjectDetailPage = () => {
                 </div>
 
                 {/* Next Project */}
-                <div className="flex-1 text-left sm:text-right">
+                <div className="flex-1 text-right">
                   {navigation.next && (
                     <Link
                       to={`/project/${navigation.next.slug}`}
